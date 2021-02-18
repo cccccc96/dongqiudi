@@ -1,0 +1,54 @@
+
+.header{
+    background-color: #dbe2ef;
+    width:100%;
+    height:60px;
+    padding-left:20px;
+}
+
+.header >span{
+    margin-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header >img{
+    margin-left: 20px;
+    margin-right:20px;
+    margin-top: 10px;
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    transition: transform 1s;
+}
+
+.header >img:hover{
+    transform: rotate(180deg);
+}
+
+.header .search-bar{
+    margin-top: 15px;
+    margin-right: 15px;
+    display: inline;
+    float: right;
+}
+
+.search-bar input {
+    border: 2px solid #7BA7AB;
+    border-radius: 5px;
+    background: #F9F0DA;
+    color: #9E9C9C;
+}
+.search-bar button {
+    top: 0;
+    right: 0;
+    background: #7BA7AB;
+    border-radius: 0 5px 5px 0;
+}
+.search-bar button:before {
+    content: "搜索";
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    color: #F9F0DA;
+}

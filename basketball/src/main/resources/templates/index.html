@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>体育大家庭</title>
+    <link rel="icon" th:href="@{/img/core-img/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<script th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript">
+    var check_num = 0;
+    function check(ctrl) {
+        if (event.srcElement.checked === true)
+            check_num++;
+        else
+            check_num--;
+        if (check_num > 2) {
+            alert("您只可以选择两只对战的球队！");
+            event.srcElement.checked = false;
+            check_num--;
+        }
+    }
+</script>
+<script type="text/javascript">
+    layui.use('laydate', function () {
+        const laydate = layui.laydate;
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+</script>
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="spinner"></div>
+</div>
+
+<header class="header-area">
+    <div class="famie-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <nav class="classy-navbar justify-content-between" id="famieNav">
+                    <a href="index.html" class="nav-brand">
+                        <img th:src="@{img/core-img/logo.png}" alt="">
+                    </a>
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+                    <div class="classy-menu">
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+                        <div class="classynav">
+                            <ul>
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">News</a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">News</a></li>
+                                                <li><a href="#">News Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                            <div id="searchIcon">
+                                <i class="icon_search" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="hero-area">
+    <div class="welcome-slides owl-carousel">
+
+        <div class="single-welcome-slides bg-img bg-overlay jarallax"
+             th:style="'background:url('+ @{/img/bg-img/new3.jpg} +');'">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="welcome-content">
+                            <h2 data-animation="fadeInUp" data-delay="200ms">This is why we play.</h2>
+                            <p data-animation="fadeInUp" data-delay="400ms">"I can accept failure, but I can't
+                                acceptnot trying.”——
+                                by Michael Jordan</p>
+                            <p data-animation="fadeInUp" data-delay="400ms">“Even if the world abandonedme, but I
+                                also accompany
+                                Basketball.”­——by Kobe Bryant</p>
+                            <a href="#begin" class="btn famie-btn mt-4" data-animation="bounceInUp"
+                               data-delay="200ms">开始预测</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-welcome-slides bg-img bg-overlay jarallax"
+             th:style="'background:url('+ @{/img/bg-img/new2.jpg} +');'">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="welcome-content">
+                            <h2 data-animation="fadeInDown" data-delay="200ms">Where amazing happens！</h2>
+                            <p data-animation="fadeInDown" data-delay="400ms">“Hard work beats talent when talent
+                                fails to work
+                                hard. ”——by Kevin Durant</p>
+                            <p data-animation="fadeInDown" data-delay="400ms">“If you're absent from mystruggle,then
+                                ,don't be
+                                present for my success.”——by Dwyane Wade</p>
+                            <a href="#begin" class="btn famie-btn mt-4" data-animation="bounceInDown"
+                               data-delay="200ms">开始预测</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-welcome-slides bg-img bg-overlay jarallax"
+             th:style="'background:url('+ @{/img/bg-img/new.jpg} +');'">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="welcome-content">
+                            <h2 data-animation="fadeInDown" data-delay="200ms">I love this game.</h2>
+                            <p data-animation="fadeInDown" data-delay="400ms">“They can not break me .The only way
+                                to break me is to
+                                kill me,and everything that does not kill memakes me stronger.”——by Allen Iverson
+                            </p>
+                            <p data-animation="fadeInDown" data-delay="400ms">“I think no matter where you are, the
+                                people who are
+                                not open todistinguish color, but the talent and the sweat you flowing.”——by Steve
+                                Nash</p>
+                            <a href="#begin" class="btn famie-btn mt-4" data-animation="bounceInDown"
+                               data-delay="200ms">开始预测</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="famie-benefits-area section-padding-100-0 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="benefits-thumbnail mb-50">
+                    <img src="img/bg-img/bg-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-4 col-lg">
+                <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="100ms">
+                    <img src="img/core-img/digger.png" alt="">
+                    <h5>专业的服务</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-lg">
+                <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="300ms">
+                    <img src="img/core-img/windmill.png" alt="">
+                    <h5>精准的预测</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-lg">
+                <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="500ms">
+                    <img src="img/core-img/cereals.png" alt="">
+                    <h5>不变的热爱</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-lg">
+                <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="700ms">
+                    <img src="img/core-img/tractor.png" alt="">
+                    <h5>别样的体验</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-lg">
+                <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="900ms">
+                    <img src="img/core-img/sunrise.png" alt="">
+                    <h5>非凡的享受</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-us-area">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-12 col-md-8">
+                <div class="about-us-content mb-100">
+                    <div class="section-heading">
+                        <p>About us</p>
+                        <h2><span>Let Us</span> Tell You Our Story</h2>
+                        <img src="img/core-img/decor.png" alt="">
+                    </div>
+                    <p>不知道你是否在朋友圈被刷屏过 NBA 的某场比赛进度或者结果？或者你就是一个 NBA
+                        狂热粉，比赛中的每个进球、抢断或是逆转压哨球都能让你热血沸腾。除去观赏精彩的比赛过程，我们也同样好奇比赛的结果会是如何。您将体验的是如何使用 NBA
+                        比赛的以往统计数据，判断每个球队的战斗力，及预测某场比赛中的结果。</p>
+                    <button type="button" class="btn btn-outline-success btn-lg" style="margin-top: 40px;">Read
+                        More
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="famie-video-play mb-100">
+                    <img src="img/bg-img/bg-3.jpg" alt="">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="services-area d-flex flex-wrap">
+    <div class="services-thumbnail bg-img jarallax" th:style="'background:url('+ @{/img/bg-img/lebron.jpg} +');'"></div>
+    <div class="services-content section-padding-100-50 px-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <p>What we do</p>
+                        <h2><span>This is</span> why we stay here</h2>
+                        <img src="img/core-img/decor.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-50">
+                    <p>我们的目的旨在让您对感兴趣的球队进行提前预测,并对新赛季的比赛两队战力做个细致比较</p>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-service-area mb-50 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="service-title mb-3 d-flex align-items-center">
+                            <img src="img/core-img/s1.png" alt="">
+                            <h5>Passion</h5>
+                        </div>
+                        <p>>Only those who have the patience to do simple things perfectly ever acquire the skill to
+                            do difficult
+                            things easily. </p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-service-area mb-50 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="service-title mb-3 d-flex align-items-center">
+                            <img src="img/core-img/s2.png" alt="">
+                            <h5>Power</h5>
+                        </div>
+                        <p>A man can succeed at almost anything for which he has unlimited enthusiasm. </p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-service-area mb-50 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="service-title mb-3 d-flex align-items-center">
+                            <img src="img/core-img/s3.png" alt="">
+                            <h5>Excitement</h5>
+                        </div>
+                        <p>A man is not old as long as he is seeking something.
+                            A man is not old until regrets take the place of dreams.
+                            　　 </p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-service-area mb-50 wow fadeInUp" data-wow-delay="700ms">
+                        <div class="service-title mb-3 d-flex align-items-center">
+                            <img src="img/core-img/s4.png" alt="">
+                            <h5>Joy</h5>
+                        </div>
+                        <p>Our destiny offers not the cup of despair, but the chalice of opportunity. So let us
+                            seize it, not in
+                            fear, but in gladness. </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our-products-area section-padding-100" id="begin">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <p>Begin your experience</p>
+                    <h2><span>开始预测</span> 19-20赛季</h2>
+                    <img src="img/core-img/decor2.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <form th:action="@{/predict}" method="get">
+        <div class="row">
+            <div class="col">
+                <h2 style="text-align: center;margin-bottom: 60px;"><span>东部球队</span></h2>
+                <div class="row row-cols-3 ">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/76人.jpg"></a><label>
+                        <input
+                                type="checkbox" name="check_image" value="Philadelphia 76ers"
+                                onclick="check(this)">76人</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/公牛.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Chicago Bulls" onclick="check(this)">公牛</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/老鹰.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Atlanta Hawks" onclick="check(this)">老鹰</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/步行者？.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Indiana Pacers" onclick="check(this)">步行者</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/魔术.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Orlando Magic" onclick="check(this)">魔术</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/绿军.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Boston Celtics" onclick="check(this)">凯尔特人</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/纽约.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="New York Knicks" onclick="check(this)">尼克斯</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/猛龙.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Toronto Raptors" onclick="check(this)">猛龙</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/篮网.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Brooklyn Nets" onclick="check(this)">篮网</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/热火.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Miami Heat" onclick="check(this)">热火</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/黄蜂.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Charlotte Hornets"
+                            onclick="check(this)">黄蜂</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/奇才.jpg"
+                                                      style="width: 160px;height: 160px;"></a><label><input
+                            type="checkbox" name="check_image"
+                            value="Washington Wizards" onclick="check(this)">奇才</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/雄鹿.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Milwaukee Bucks" onclick="check(this)">雄鹿</label>
+                    </div>
+                    <div class="col"><a href="#"><img
+                            src="img/tupian/tupian/Detroit%20pistons.jpg"></a><label><input type="checkbox"
+                                                                                            name="check_image"
+                                                                                            value="Detroit Pistons"
+                                                                                            onclick="check(this)">活塞</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/骑士.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Cleveland Cavaliers"
+                            onclick="check(this)">骑士</label></div>
+                </div>
+            </div>
+            <div class="col">
+                <h2 style="text-align: center;margin-bottom: 60px;"><span>西部球队</span></h2>
+                <div class="row row-cols-3 ">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/denver%20nuggets.jpg"></a><label><input
+                            type="checkbox" name="image " value="Denver Nuggets" onclick="check(this)">掘金</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/火箭.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Houston Rockets" onclick="check(this)">火箭</label>
+                    </div>
+                    <div class="col"><a href="#"><img
+                            src="img/tupian/tupian/minnesota%20timberwolves（不认识）.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Minnesota Timberwolves" onclick="check(this)">森林狼</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img
+                            src="img/tupian/tupian/portland%20trail%20blazers.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Portland Trail Blazers" onclick="check(this)">开拓者</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/勇士.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Golden State Warriors"
+                            onclick="check(this)">勇士</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/国王.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Sacramento Kings" onclick="check(this)">国王</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/太阳.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Phoenix Suns" onclick="check(this)">太阳</label>
+                    </div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/小牛？.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Dallas Mavericks"
+                            onclick="check(this)">独行侠</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/快船.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Los Angeles Clippers"
+                            onclick="check(this)">快船</label></div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/湖人.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Los Angeles Lakers"
+                            onclick="check(this)">湖人</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/鹈鹕.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="New Orleans Pelicans"
+                            onclick="check(this)">鹈鹕</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/马刺.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="San Antonio Spurs"
+                            onclick="check(this)">马刺</label>
+                    </div>
+                </div>
+                <div class="row row-cols-3 " style="margin-top: 80px;">
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/雷霆.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Oklahoma City Thunder"
+                            onclick="check(this)">雷霆</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/爵士.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Utah Jazz" onclick="check(this)">爵士</label></div>
+                    <div class="col"><a href="#"><img src="img/tupian/tupian/灰熊？.jpg"></a><label><input
+                            type="checkbox" name="check_image" value="Memphis Grizzlies"
+                            onclick="check(this)">灰熊</label></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/daterangepicker.min.js"></script>
+        <section class="newsletter-area section-padding-100 bg-img bg-overlay jarallax"
+                 th:style="'background:url('+ @{/img/bg-img/8.jpg} +'); margin-top: 200px'">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="newsletter-content">
+                            <!-- Section Heading -->
+                            <div class="section-heading white text-center">
+                                <p>Begin your prediction</p>
+                                <h2><span>请输入</span> 您要预测的场次</h2>
+                                <img src="img/core-img/decor2.png" alt="">
+                            </div>
+                            <p class="text-white mb-50 text-center">
+                                请确保预测队伍及天数真实有效，为19-20赛季真实场次（例：猛龙 鹈鹕 2019-10-22）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-6">
+                        <input type="text" class="form-control" id="test1" placeholder="请输入您要预测的场次" name="date" th:value="${date}">
+                        <script src="js/layDate-v5.0.9/laydate/laydate.js" charset="GBK"></script> <!-- 改成你的路径 -->
+                        <script>
+                            //执行一个laydate实例
+                            laydate.render({
+                                elem: '#test1' //指定元素
+                            });
+                        </script>
+                        <div class="gotoshop-btn text-center wow fadeInUp" data-wow-delay="900ms">
+                            <input type="submit" value="开始预测" class="btn famie-btn">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</section>
+
+<section class="farming-practice-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <p>Make things happen</p>
+                    <h2><span>Popular Star</span> in history</h2>
+                    <img src="img/core-img/decor2.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/1%20.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-1.png" alt="" style="height: 50px;">
+                        </div>
+                        <span>Forward</span>
+                        <h4>LeBron James</h4>
+                        <p>James was selected by the Cleveland Cavaliers in the first round of the first round of
+                            the 2003 NBA
+                            Draft, and was named the MVP of the NBA regular season in 2009 and 2010. In 2010, James
+                            moved to the
+                            Miami Heat. In 2012, James won the third regular season MVP, the first championship and
+                            finals MVP of
+                            the NBA personal career, and won the London Olympic gold medal on behalf of the American
+                            men ’s
+                            basketball team, which tied the record set by Michael Jordan in 1992 . In 2013, James
+                            won the 4th
+                            regular season MVP, the 2nd NBA championship and the 2nd final MVP, achieving two
+                            consecutive
+                            championships. In 2014, James returned to the Cavaliers. In 2016, James led the
+                            Cavaliers to defeat the
+                            defending champion Warriors to win the team's first championship and personal third MVP.
+                            On July 10,
+                            2018, James officially signed a four-year, $ 153 million contract with the Lakers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/2.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-2.png" alt="" style="height: 50px;">
+                        </div>
+                        <span> the point guard</span>
+                        <h4>Stephen Curry</h4>
+                        <p>Stephen Curry has been playing for the Warriors since he entered the NBA through the
+                            draft in 2009. He
+                            was selected as the best rookie first team in the rookie season; won the NBA
+                            championship three times in
+                            2014-15, 2016-17, and 2017-18; twice MVP of the regular season, 6 times in the best
+                            lineup (3 times in a
+                            row, 2 times in a second team, 1 times in a three team), 6 times in the All-Star Game
+                            Western Conference
+                            starting lineup.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/3.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-3.png" alt="" style="height: 50px;">
+                        </div>
+                        <span>the point guard</span>
+                        <h4>Kyrie Irving</h4>
+                        <p>Kyrie irving entered the NBA as the no. 1 overall pick in the 2011 draft and played for
+                            the cavaliers,
+                            celtics and nets.Rookie of the year;He was selected to the all-star starting lineup for
+                            the first time
+                            in 2014 and was named the all-star game's most valuable player.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="400ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/4.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-4.png" alt="" style="height: 50px;">
+                        </div>
+                        <span>the point guard</span>
+                        <h4>James Harden</h4>
+                        <p>James harden passed in 2009 to enter the NBA draft, played in Oklahoma city and Houston
+                            rockets, named
+                            best young player's second team rookie season, 2011-12 season was elected the best sixth
+                            man, named team
+                            of the third team 2012-13 season, five times the first squad named best team, eight
+                            all-star squad,
+                            2017-18 was named MVP season, twice won the NBA scoring champion, once won the NBA in
+                            assists.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="500ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/5.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-5.png" alt="" style="height: 50px;">
+                        </div>
+                        <span>Forward</span>
+                        <h4>Kevin Durant</h4>
+                        <p>On July 4, 2016, durant joined the golden state warriors.On June 13, 2017, the warriors
+                            beat the
+                            cavaliers 4-1 in the overall score and won the NBA championship in the 2016-17 season.
+                            Durant won his
+                            first career title and was awarded the FMVP.Durant was named time magazine's most
+                            influential person in
+                            the world in April 2018.on June 9, 2018, durant won another NBA championship with the
+                            warriors and was
+                            again named the 2017-18 finals MVP.won the community contribution of the year award for
+                            the 2017-18
+                            season. in February 2019, durant won his second NBA all-star MVPnin May, durant was
+                            selected to the
+                            all-nba second team for the 2018-19 season.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="600ms">
+                    <div class="farming-practice-thumbnail">
+                        <img src="img/role-img/6.jpg" alt="" style="width: auto;height: 400px;margin-left:50px;">
+                    </div>
+                    <div class="farming-practice-content text-center">
+                        <div class="farming-icon">
+                            <img src="img/role-img/r-6.png" alt="" style="height: 50px;">
+                        </div>
+                        <span>the point guard</span>
+                        <h4>Derrick Rose</h4>
+                        <p>Derrick rose was selected by the Chicago bulls in the first round of the 2008 NBA draft.
+                            He was
+                            selected as the NBA rookie of the year in his rookie season and won the NBA all-star
+                            skills challenge.
+                            He was selected to the NBA all-star reserve team in the 2009-10 season.In the 2010-11
+                            season, rose, 22,
+                            was named the NBA's most valuable player (MVP), making him the youngest MVP in NBA
+                            history, and was
+                            selected to the all-nba team and the starting lineup for the all-star game that
+                            season.He was selected
+                            to the NBA all-star team again in the 2011-12 season.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="testimonial-area bg-img bg-overlay section-padding-100 jarallax"
+         th:style="'background:url('+ @{/img/bg-img/15.jpg} +');'">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+
+                    <h2><span>分享你与篮球的故事</span></h2>
+                    <img src="img/core-img/decor2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonial-slides owl-carousel">
+
+                        <div class="single-slide">
+                            <div class="testi-text d-flex">
+                                <div class="quote-icon">
+                                    <img src="img/core-img/quote.png" alt="">
+                                </div>
+                                <h5>"Basketball is my passion, although I am not particularly hard, but now I find
+                                    that I am in
+                                    contact
+                                    with it every day, although I am not as talented as a professional athlete in
+                                    training, but I
+                                    believe
+                                    it will accompany me to old age because I ca n’t live without him Off"</h5>
+                            </div>
+                            <div class="testimonial-thumbnail-name d-flex align-items-center">
+                                <div class="testimonial-thumbnail">
+                                    <img src="img/bg-img/a.png" alt="">
+                                </div>
+                                <div class="testimonial-name">
+                                    <h5>NAN</h5>
+                                    <h6>Professional basketball trainer</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-slide">
+                            <div class="testi-text d-flex">
+                                <div class="quote-icon">
+                                    <img src="img/core-img/quote.png" alt="">
+                                </div>
+                                <h5>"Basketball has an extraordinary meaning to me. Its status in my life has
+                                    exceeded all
+                                    entertainment.
+
+                                    No matter how difficult it is, a game will pass. Even in the face of depression,
+                                    basketball raised
+                                    my
+                                    head and faced it bravely ..."</h5>
+                            </div>
+                            <div class="testimonial-thumbnail-name d-flex align-items-center">
+                                <div class="testimonial-thumbnail">
+                                    <img th:src="@{img/bg-img/b.jpg}" alt="">
+                                </div>
+                                <div class="testimonial-name">
+                                    <h5>CAI</h5>
+                                    <h6>Professional basketball player</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var errori = '<%=request.getAttribute("errorxxx")%>';
+    if (errori === 'yes') {
+        alert("请输入正确的日程表");
+        window.location.href = "http://localhost:8080/index.html"
+    }
+</script>
+<!-- jquery 2.2.4  -->
+<script th:src="@{js/jquery.min.js}"></script>
+<!-- Popper js -->
+<script th:src="@{js/popper.min.js}"></script>
+<!-- Bootstrap js -->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<!-- Owl Carousel js -->
+<script th:src="@{js/owl.carousel.min.js}"></script>
+<!-- Classynav -->
+<script th:src="@{js/classynav.js}"></script>
+<!-- Wow js -->
+<script th:src="@{js/wow.min.js}"></script>
+<!-- Sticky js -->
+<script th:src="@{js/jquery.sticky.js}"></script>
+<!-- Magnific Popup js -->
+<script th:src="@{js/jquery.magnific-popup.min.js}"></script>
+<!-- Scrollup js -->
+<script th:src="@{js/jquery.scrollup.min.js}"></script>
+<!-- Jarallax js -->
+<script th:src="@{js/jarallax.min.js}"></script>
+<!-- Jarallax Video js -->
+<script th:src="@{js/jarallax-video.min.js}"></script>
+<!-- Active js -->
+<script th:src="@{js/active.js}"></script>
+</body>
+</html>

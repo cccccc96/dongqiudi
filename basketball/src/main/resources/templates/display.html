@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="utf-8">
+    <title>Team 5</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link rel="icon" th:href="@{img/core-img/favicon.ico}">
+
+    <!-- Bootstrap CSS File -->
+    <link th:href="@{new/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link th:href="@{new/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/ionicons/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/lightbox/css/lightbox.min.css}" rel="stylesheet">
+    <link th:href="@{new/css/style.css}" rel="stylesheet">
+    <style>
+        #table th {
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+<!--<%-->
+<!--String t1 = (String) request.getAttribute("t1");-->
+<!--String date =(String) request.getAttribute("date");-->
+<!--String t2 = (String)request.getAttribute("t2");-->
+<!--String t1_src = (String) request.getAttribute("t1_src");-->
+<!--String t2_src = (String) request.getAttribute("t2_src");-->
+<!--String result = (String) request.getAttribute("percent");-->
+<!--StringBuilder S1 = @{new StringBuilder(t1_src);-->
+<!--StringBuilder S2 = @{new StringBuilder(t2_src);-->
+<!--System.out.println(t1_src);-->
+<!--System.out.println(t2_src);-->
+<!--for (int i =0;i-->
+<!--<S1.length-->
+<!--        ();i++){-->
+<!--        if (S1.charAt(i)=='\\'){-->
+<!--        S1.setCharAt(i,-->
+<!--'/');-->
+<!--}-->
+<!--}-->
+<!--for (int i =0;i-->
+<!--<S2.length-->
+<!--        ();i++){-->
+<!--        if (S2.charAt(i)=='\\'){-->
+<!--        S2.setCharAt(i,-->
+<!--'/');-->
+<!--}-->
+<!--}-->
+<!--%>-->
+<!--/ Nav Star /-->
+<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll" href="#page-top">Team 5</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link js-scroll active" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#about">Result</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#details">Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#player">Player</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll active" href="index.jsp">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--/ Nav End /-->
+
+<!--/ Intro Skew Star /-->
+<div id="home" class="intro route bg-image"
+     th:style="'background:url('+ @{img/bg-img/timg.jpg} +');'">
+    <div class="overlay-itro"></div>
+    <div class="intro-content display-table">
+        <div class="table-cell">
+            <div class="container">
+                <h1 class="intro-title mb-4">Welcome my friends</h1>
+                <p class="intro-subtitle"><span class="text-slider-items">Prepare to Check out your results. Wish you have a nice day!</span><strong
+                        class="text-slider"></strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ Intro Skew End /-->
+
+<section id="about" class="about-mf sect-pt4 route" style="margin-bottom: 150px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="box-shadow-full">
+                    <h3 class="title-a" style="margin-bottom: 20px; margin-left:380px">
+                        Result
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img th:src="${img_1}" class=" offset-md-4 " alt="...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img th:src="${img_2}" class=" offset-md-4 " alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover" style="margin: 30px">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="padding-left:60px">Winner</th>
+                            <th scope="col" style="padding-left: 100px">Loser</th>
+                            <th scope="col">Percentage</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+
+                            <td th:text="${team1}"></td>
+                            <td th:text="${team2}"></td>
+                            <td th:text="${date}"></td>
+                            <td th:text="${probability}"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</section>
+
+<section id="details" class="services-mf route" style="margin-bottom: 150px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        Details
+                    </h3>
+                    <p class="subtitle-a">
+                        整个赛季的季后赛预测对阵图
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <span class="ico-circle" style="padding: 10px"><i class="ion-monitor"></i></span>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">第一轮</h2>
+                        <p class="s-description text-center">
+                            <a href="post_season/第一轮/index.html">
+                                点击查看详情
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <span class="ico-circle" style="padding: 10px"><i class="ion-code-working"></i></span>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">第二轮</h2>
+                        <p class="s-description text-center">
+                            <a href="post_season/第二轮/index.html">
+                                点击查看详情
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <span class="ico-circle" style="padding: 10px"><i class="ion-stats-bars"></i></span>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">第三轮</h2>
+                        <p class="s-description text-center">
+                            <a href="post_season/第三轮/index.html">
+                                点击查看详情
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <span class="ico-circle" style="padding: 10px"><i class="ion-android-phone-portrait"></i></span>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">总决赛</h2>
+                        <p class="s-description text-center">
+                            <a href="post_season/总决/index.html">
+                                点击查看详情
+                            </a>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!--/ Section Testimonials Star /-->
+<div class="testimonials paralax-mf bg-image"
+     th:style="'background:url('+ @{new/img/overlay-bg.jpg} +');'" id="participant">
+    <div class="overlay-mf"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="testimonial-mf" class="owl-carousel owl-theme">
+                    <div class="testimonial-box">
+                        <div class="author-test">
+                            <img th:src="@{img/bg-img/a.png}" alt="" class="rounded-circle b-shadow-a">
+                            <span class="author">SuNan Yang</span>
+                        </div>
+                        <div class="content-test">
+                            <p class="description lead">
+                                快乐就完事了
+                            </p>
+                            <span class="comit"><i class="fa fa-quote-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="testimonial-box">
+                        <div class="author-test">
+                            <img th:src="@{img/bg-img/b.jpg}" alt="" class="rounded-circle b-shadow-a">
+                            <span class="author">ZhengHai Cai</span>
+                        </div>
+                        <div class="content-test">
+                            <p class="description lead">
+                                篮球就是我的生命
+                            </p>
+                            <span class="comit"><i class="fa fa-quote-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--/ Section Blog Star /-->
+<section id="blog" class="blog-mf sect-pt4 route">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        Blog
+                    </h3>
+                    <p class="subtitle-a">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-img">
+                        <a href="#"><img th:src="@{img/player/bg-3.jpg}" alt="" class="img-fluid"></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-category-box">
+                            <div class="card-category">
+                                <h6 class="category">Passion</h6>
+                            </div>
+                        </div>
+                        <h3 class="card-title"><a href="#">Enjoy the afternoon</a></h3>
+                        <p class="card-description">
+                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa,
+                            convallis
+                            a pellentesque nec,
+                            egestas non nisi.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="post-author">
+                            <a href="#">
+                                <img th:src="@{img/bg-img/b.jpg}" alt="" class="avatar rounded-circle">
+                                <span class="author">Cai</span>
+                            </a>
+                        </div>
+                        <div class="post-date">
+                            <span class="ion-ios-clock-outline"></span> 5 min
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-img">
+                        <a href="#"><img th:src="@{img/player/bg-1.jpg}" alt="" class="img-fluid"></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-category-box">
+                            <div class="card-category">
+                                <h6 class="category">Excitement</h6>
+                            </div>
+                        </div>
+                        <h3 class="card-title"><a href="#">Have a nice day</a></h3>
+                        <p class="card-description">
+                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa,
+                            convallis
+                            a pellentesque nec,
+                            egestas non nisi.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="post-author">
+                            <a href="#">
+                                <img th:src="@{img/bg-img/a.png}" alt="" class="avatar rounded-circle">
+                                <span class="author">Nan</span>
+                            </a>
+                        </div>
+                        <div class="post-date">
+                            <span class="ion-ios-clock-outline"></span> 50min
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-img">
+                        <a href="#"><img th:src="@{img/player/bg-4.jpg}" alt="" class="img-fluid"></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-category-box">
+                            <div class="card-category">
+                                <h6 class="category">Joy</h6>
+                            </div>
+                        </div>
+                        <h3 class="card-title"><a href="#">Welcome my friend</a></h3>
+                        <p class="card-description">
+                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa,
+                            convallis
+                            a pellentesque nec,
+                            egestas non nisi.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="post-author">
+                            <a href="#">
+                                <img th:src="@{img/bg-img/a.png}" alt="" class="avatar rounded-circle">
+                                <span class="author">Nan</span>
+                            </a>
+                        </div>
+                        <div class="post-date">
+                            <span class="ion-ios-clock-outline"></span> 10 min
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Section Blog End /-->
+<section id="player" class="about-mf sect-pt4 route" style="margin-bottom: 150px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="box-shadow-full">
+                    <h3 class="title-a" style="margin-bottom: 80px; margin-left:220px ">
+                        你喜爱的球员新赛季预测数据
+                    </h3>
+                    <table class="table table-hover ">
+                        <thead>
+                        <tr class="alert alert-primary">
+                            <th scope="col">序号</th>
+                            <th scope="col">姓名</th>
+                            <th scope="col">场均时间</th>
+                            <th scope="col">命中率</th>
+                            <th scope="col">三分命中率</th>
+                            <th scope="col">罚球命中率</th>
+                            <th scope="col">篮板</th>
+                            <th scope="col">助攻</th>
+                            <th scope="col">抢断</th>
+                            <th scope="col">盖帽</th>
+                            <th scope="col">失误</th>
+                            <th scope="col">得分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</section>
+
+
+<section id="temp" class="services-mf route" style="margin-bottom: 150px;margin-top:100px ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        球员模板
+                    </h3>
+                    <p class="subtitle-a">
+                        快来看看你感兴趣的球员的模板是谁吧
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/6.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">哈登</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b0">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p0">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/11.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">比尔</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b1">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p1">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/20.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">安特托昆博</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b2">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p2">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/31.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">特雷-杨</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b3">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p3">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/30.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">利拉德</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b4">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p4">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/32.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">卢卡-东契奇</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b5">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p5">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/13.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">伦纳德</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b6">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p6">
+                            <p class="s-description text-center">
+                                "Shaquille O'Neal"
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/29.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">安东尼-戴维斯</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b7">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p7">
+                            <p class="s-description text-center">
+                                "Shaquille O'Neal"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/8.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">布克</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b8">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p8">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/17.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">拉文</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b9">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p9">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/4.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">英格拉姆</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b10">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p10">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/33.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">米切尔</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b11">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p11">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/1.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">西亚卡姆</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b12">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p12">
+                            <p class="s-description text-center">
+                                "Shaquille O'Neal"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/18.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">塔图姆</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b13">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p13">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/15.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">CJ-迈克勒姆</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b14">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p14">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/12.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">德罗赞</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b15">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p15">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/23.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">维金斯</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b16">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p16">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/35.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">肯巴-沃克</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b17">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p17">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/3.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">米德尔顿</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b18">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p18">
+                            <p class="s-description text-center">
+                                'Yao Ming'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/36.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">塞克斯顿</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b19">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p19">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/37.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">丁维迪</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b20">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p20">
+                            <p class="s-description text-center">
+                                'LeBron James'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/38.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">福克斯</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b21">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p21">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/19.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">巴特勒</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b22">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p22">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/39.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">希尔德</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b23">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p23">
+                            <p class="s-description text-center">
+                                'Yao Ming'
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/40.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">洛瑞</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b24">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p24">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/41.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">霍勒迪</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b25">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p25">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/42.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">武切维奇</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b26">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p26">
+                            <p class="s-description text-center">
+                                'Tim Duncan'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/43.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">波尔津吉斯</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b27">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p27">
+                            <p class="s-description text-center">
+                                'Yao Ming'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/25.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">阿尔德里奇</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b28">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p28">
+                            <p class="s-description text-center">
+                                'Tim Duncan'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/44.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">穆雷</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b29">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p29">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/27.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">罗斯</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b30">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p30">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-box">
+                    <div class="service-ico">
+                        <div class="row">
+                            <img th:src="@{img/player/45.png}" style="width:80px;height: 80px;margin-left: 80px ">
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h2 class="s-title">罗齐尔</h2>
+                        <p class="s-description text-center">
+                            <button type="button" class="btn btn-outline-info" id="b31">点击查看该球员的模板</button>
+                        </p>
+                        <div id="p31">
+                            <p class="s-description text-center">
+                                'Kobe Bryant'
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!--/ Section Contact-Footer Star /-->
+<section class="paralax-mf footer-paralax bg-image sect-mt4 route"
+         th:style="'background:url('+ @{new/img/overlay-bg.jpg} +');'">
+    <div class="overlay-mf"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="contact-mf">
+                    <div id="contact" class="box-shadow-full">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="title-box-2">
+                                    <h5 class="title-left">
+                                        Send Message Us
+                                    </h5>
+                                </div>
+                                <div>
+                                    <form action="" method="post" role="form" class="contactForm">
+                                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                                        <div id="errormessage"></div>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" class="form-control" id="name"
+                                                           placeholder="Your Name" data-rule="minlen:4"
+                                                           data-msg="Please enter at least 4 chars"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                           placeholder="Your Email" data-rule="email"
+                                                           data-msg="Please enter a valid email"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="subject" id="subject"
+                                                           placeholder="Subject" data-rule="minlen:4"
+                                                           data-msg="Please enter at least 8 chars of subject"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="message" rows="5"
+                                                              data-rule="required"
+                                                              data-msg="Please write something for us"
+                                                              placeholder="Message"></textarea>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="button button-a button-big button-rouded">
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="title-box-2 pt-4 pt-md-0">
+                                    <h5 class="title-left">
+                                        Get in Touch
+                                    </h5>
+                                </div>
+                                <div class="more-info">
+                                    <p class="lead">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem
+                                        soluta quidem
+                                        expedita aperiam aliquid at.
+                                        Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
+                                        mollitia inventore?
+                                    </p>
+                                    <ul class="list-ico">
+                                        <li><span class="ion-ios-location"></span>华东师范大学</li>
+                                        <li><span class="ion-ios-telephone"></span>10086</li>
+                                        <li><span class="ion-email"></span> 1242378947@qq.com</li>
+                                    </ul>
+                                </div>
+                                <div class="socials">
+                                    <ul>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-facebook"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-instagram"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-twitter"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-pinterest"></i></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright-box">
+                        <p class="copyright">&copy; Copyright <strong>Team 5</strong>. All Rights Reserved</p>
+                        <div class="credits">
+                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<!--/ Section Contact-footer End /-->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<div id="preloader"></div>
+
+<!-- JavaScript Libraries -->
+<script th:src="@{new/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{new/lib/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{new/lib/popper/popper.min.js}"></script>
+<script th:src="@{new/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{new/lib/easing/easing.min.js}"></script>
+<script th:src="@{new/lib/counterup/jquery.waypoints.min.js}"></script>
+<script th:src="@{new/lib/counterup/jquery.counterup.js}"></script>
+<script th:src="@{new/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{new/lib/lightbox/js/lightbox.min.js}"></script>
+<script th:src="@{new/lib/typed/typed.min.js}"></script>
+<!-- Contact Form JavaScript File -->
+<script th:src="@{new/contactform/contactform.js}"></script>
+
+<!-- Template Main Javascript File -->
+<script th:src="@{new/js/main.js}"></script>
+<script>
+    //1,先准备数据
+    var datas = [
+        {
+            id: "1",
+            player: "LeBron James",
+            time: "38.4",
+            hit_tate: "50.40%",
+            three_rate: "34.40%",
+            fr_throw: "73.50%",
+            reb: "7.4",
+            ast: "7.4",
+            ste: "1.6",
+            blo: "0.8",
+            miss: "3.5",
+            points: "27.1"
+        },
+        {
+            id: "2",
+            player: "Stephen Curry",
+            time: "34.7",
+            hit_tate: "47.60%",
+            three_rate: "43.5%",
+            fr_throw: "90.1%",
+            reb: "6.8",
+            ast: "1.8",
+            ste: "0.2",
+            blo: "3.2",
+            miss: "3.1",
+            points: "22.8"
+        },
+        {
+            id: "3",
+            player: "Khris Middleton",
+            time: "31.6",
+            hit_tate: "45.80%",
+            three_rate: "39.20%",
+            fr_throw: "87.40%",
+            reb: "4.6",
+            ast: "3.3",
+            ste: "1.3",
+            blo: "0.2",
+            miss: "1.9",
+            points: "16.3"
+        },
+        {
+            id: "4",
+            player: "Brandon Ingram",
+            time: "32.3",
+            hit_tate: "46.00%",
+            three_rate: "35.70%",
+            fr_throw: "72.00%",
+            reb: "5.1",
+            ast: "3.2",
+            ste: "0.7",
+            blo: "0.6",
+            miss: "2.3",
+            points: "16.2"
+        },
+        {
+            id: "5",
+            player: "Kevin Durant",
+            time: "36.9",
+            hit_tate: "49.30%",
+            three_rate: "38.10%",
+            fr_throw: "88.30%",
+            reb: "7.1",
+            ast: "4.1",
+            ste: "1.1",
+            blo: "1.1",
+            miss: "3.1",
+            points: "27"
+        },
+        {
+            id: "6",
+            player: "James Harden",
+            time: "34.3",
+            hit_tate: "44.20%",
+            three_rate: "36.30%",
+            fr_throw: "85.80%",
+            reb: "5.3",
+            ast: "6.3",
+            ste: "1.6",
+            blo: "0.5",
+            miss: "3.7",
+            points: "25.1"
+        },
+        {
+            id: "7",
+            player: "Kyrie Irving",
+            time: "33.8",
+            hit_tate: "46.60%",
+            three_rate: "39.00%",
+            fr_throw: "87.70%",
+            reb: "3.7",
+            ast: "5.7",
+            ste: "1.3",
+            blo: "0.4",
+            miss: "2.6",
+            points: "22.4"
+        },
+        {
+            id: "8",
+            player: "Devin Booker",
+            time: "33.5",
+            hit_tate: "44.70%",
+            three_rate: "35.50%",
+            fr_throw: "86.80%",
+            reb: "3.6",
+            ast: "4.7",
+            ste: "0.8",
+            blo: "0.3",
+            miss: "3.3",
+            points: "22.3"
+        },
+        {
+            id: "9",
+            player: "Blake Griffin",
+            time: "34.8",
+            hit_tate: "49.80%",
+            three_rate: "33.30%",
+            fr_throw: "69.40%",
+            reb: "8.8",
+            ast: "4.4",
+            ste: "0.9",
+            blo: "0.5",
+            miss: "2.6",
+            points: "21.7"
+        },
+        {
+            id: "10",
+            player: "DeMarcus  Cousins",
+            time: "32",
+            hit_tate: "46.10%",
+            three_rate: "33.20%",
+            fr_throw: "73.70%",
+            reb: "10.9",
+            ast: "3.2",
+            ste: "1.4",
+            blo: "1.2",
+            miss: "3.5",
+            points: "21.2"
+        },
+        {
+            id: "11",
+            player: "Bradley  Beal",
+            time: "34.6",
+            hit_tate: "45.20%",
+            three_rate: "38.00%",
+            fr_throw: "80.70%",
+            reb: "4",
+            ast: "4",
+            ste: "1.1",
+            blo: "0.4",
+            miss: "2.3",
+            points: "21"
+        },
+        {
+            id: "12",
+            player: "DeMar DeRozan",
+            time: "34.2",
+            hit_tate: "45.70%",
+            three_rate: "28.30%",
+            fr_throw: "82.90%",
+            reb: "4.4",
+            ast: "3.6",
+            ste: "1",
+            blo: "0.3",
+            miss: "2.1",
+            points: "20"
+        },
+        {
+            id: "13",
+            player: "Kawhi Leonard",
+            time: "31",
+            hit_tate: "49.10%",
+            three_rate: "38.10%",
+            fr_throw: "85.40%",
+            reb: "6.4",
+            ast: "2.7",
+            ste: "1.8",
+            blo: "0.7",
+            miss: "1.6",
+            points: "18.6"
+        },
+        {
+            id: "14",
+            player: "Chris  Paul",
+            time: "34.9",
+            hit_tate: "47.00%",
+            three_rate: "37.00%",
+            fr_throw: "87.00%",
+            reb: "4.5",
+            ast: "9.5",
+            ste: "2.2",
+            blo: "0.1",
+            miss: "2.4",
+            points: "18.5"
+        },
+        {
+            id: "15",
+            player: "CJ McCollum",
+            time: "30.8",
+            hit_tate: "45.50%",
+            three_rate: "39.70%",
+            fr_throw: "82.70%",
+            reb: "3.3",
+            ast: "3.1",
+            ste: "0.9",
+            blo: "0.4",
+            miss: "1.7",
+            points: "18.4"
+        },
+        {
+            id: "16",
+            player: "Kevin  Love",
+            time: "32",
+            hit_tate: "44.20%",
+            three_rate: "37.00%",
+            fr_throw: "82.80%",
+            reb: "11.1",
+            ast: "2.4",
+            ste: "0.7",
+            blo: "0.5",
+            miss: "2",
+            points: "18.2"
+        },
+        {
+            id: "17",
+            player: "Zach  LaVine",
+            time: "30.8",
+            hit_tate: "44.70%",
+            three_rate: "37.50%",
+            fr_throw: "81.90%",
+            reb: "3.6",
+            ast: "3.6",
+            ste: "0.9",
+            blo: "0.3",
+            miss: "2.5",
+            points: "17.7"
+        },
+        {
+            id: "18",
+            player: "Jayson  Tatum",
+            time: "31.9",
+            hit_tate: "45.60%",
+            three_rate: "39.90%",
+            fr_throw: "82.70%",
+            reb: "6",
+            ast: "2.2",
+            ste: "1.2",
+            blo: "0.8",
+            miss: "1.7",
+            points: "17.2"
+        },
+        {
+            id: "19",
+            player: "Jimmy  Butler",
+            time: "33.1",
+            hit_tate: "45.40%",
+            three_rate: "33.30%",
+            fr_throw: "83.50%",
+            reb: "5.1",
+            ast: "3.7",
+            ste: "1.6",
+            blo: "0.5",
+            miss: "1.5",
+            points: "17"
+        },
+        {
+            id: "20",
+            player: "Giannis  Antetokounmpo",
+            time: "32.6",
+            hit_tate: "52.50%",
+            three_rate: "28.50%",
+            fr_throw: "72.40%",
+            reb: "8.9",
+            ast: "4.3",
+            ste: "1.2",
+            blo: "1.3",
+            miss: "2.8",
+            points: "20"
+        },
+        {
+            id: "21",
+            player: "Kemba  Walker",
+            time: "33.9",
+            hit_tate: "41.80%",
+            three_rate: "36.00%",
+            fr_throw: "83.80%",
+            reb: "3.8",
+            ast: "5.4",
+            ste: "1.3",
+            blo: "0.4",
+            miss: "2.2",
+            points: "20"
+        },
+        {
+            id: "22",
+            player: "Paul  George",
+            time: "33.5",
+            hit_tate: "43.30%",
+            three_rate: "38.00%",
+            fr_throw: "84.60%",
+            reb: "6.4",
+            ast: "3.3",
+            ste: "1.7",
+            blo: "0.4",
+            miss: "2.6",
+            points: "19.9"
+        },
+        {
+            id: "23",
+            player: "Andrew  Wiggins",
+            time: "35.8",
+            hit_tate: "44.10%",
+            three_rate: "33.20%",
+            fr_throw: "73.20%",
+            reb: "4.4",
+            ast: "2.3",
+            ste: "1",
+            blo: "0.6",
+            miss: "2.1",
+            points: "19.7"
+        },
+        {
+            id: "24",
+            player: "Klay  Thompson",
+            time: "33.1",
+            hit_tate: "45.90%",
+            three_rate: "41.90%",
+            fr_throw: "84.80%",
+            reb: "3.5",
+            ast: "2.3",
+            ste: "0.9",
+            blo: "0.5",
+            miss: "1.7",
+            points: "19.5"
+        },
+        {
+            id: "25",
+            player: "LaMarcus  Aldridge",
+            time: "34.4",
+            hit_tate: "49.10%",
+            three_rate: "31.20%",
+            fr_throw: "81.10%",
+            reb: "8.3",
+            ast: "2",
+            ste: "0.7",
+            blo: "1.1",
+            miss: "1.6",
+            points: "19.5"
+        },
+        {
+            id: "26",
+            player: "John  Wall",
+            time: "35.9",
+            hit_tate: "43.30%",
+            three_rate: "32.40%",
+            fr_throw: "78.10%",
+            reb: "4.3",
+            ast: "9.2",
+            ste: "1.7",
+            blo: "0.7",
+            miss: "3.8",
+            points: "19"
+        },
+        {
+            id: "27",
+            player: "Derrick  Rose)",
+            time: "32.6",
+            hit_tate: "45.60%",
+            three_rate: "30.40%",
+            fr_throw: "82.70%",
+            reb: "3.4",
+            ast: "5.6",
+            ste: "0.8",
+            blo: "0.3",
+            miss: "2.6",
+            points: "18.8"
+        },
+        {
+            id: "28",
+            player: "Joel  Embiid)",
+            time: "30.6",
+            hit_tate: "47.90%",
+            three_rate: "32.20%",
+            fr_throw: "79.40%",
+            reb: "11.5",
+            ast: "3.1",
+            ste: "0.7",
+            blo: "1.8",
+            miss: "3.5",
+            points: "24.1"
+        },
+        {
+            id: "29",
+            player: "Anthony Davis",
+            time: "34.5",
+            hit_tate: "51.70%",
+            three_rate: "31.90%",
+            fr_throw: "80.10%",
+            reb: "10.4",
+            ast: "2.2",
+            ste: "1.4",
+            blo: "2.4",
+            miss: "1.9",
+            points: "24"
+        },
+        {
+            id: "30",
+            player: "Damian Lillard",
+            time: "36.3",
+            hit_tate: "43.60%",
+            three_rate: "37.10%",
+            fr_throw: "88.90%",
+            reb: "4.2",
+            ast: "6.5",
+            ste: "1",
+            blo: "0.3",
+            miss: "2.8",
+            points: "24"
+        }
+
+    ];
+
+    //2,往tbody里面创建行，有几个人（通过数组的长度）我们就创建几行
+    var tbody = document.querySelectorAll("tbody")[1];
+    for (var i = 0; i < datas.length; i++)  //外面的for循环 是 行tr
+    {
+        var tr = document.createElement("tr");
+        tbody.appendChild(tr);
+        //3,往tr每一行里面创建单元格（跟数据有关系的3个单元格），td单元格的数量取决于每个对象的属性个数 for循环遍历对象 datas[i]
+        for (var k in datas[i])   //里面的for循环是 列
+        {
+            var td = document.createElement("td");  //创建单元格
+            tr.appendChild(td);
+            td.innerHTML = datas[i][k]; //把对象里面的属性值 datas[i][k]给td
+
+        }
+
+    }
+</script>
+
+</body>
+</html>
+
