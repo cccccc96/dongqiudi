@@ -58,25 +58,22 @@ public class PredictController {
         map.put("Oklahoma City Thunder", filepath + "雷霆.jpg");
         map.put("Utah Jazz", filepath + "爵士.jpg");
         map.put("Memphis Grizzlies", filepath + "灰熊？.jpg");
-
-        System.out.println(date);
-        System.out.println(Arrays.toString(imgs));
-        model.addAttribute("date", date);
         String t1 = imgs[0];
         String t2 = imgs[1];
         Optional<Result> result = Optional.ofNullable(iRecord.search(t1, t2, date));
         if (!result.isPresent()) {
             return "index";
         }
-        model.addAttribute("team1", result.get().getWteam());
-        model.addAttribute("team2", result.get().getLteam());
-        model.addAttribute("probability", result.get().getProbability());
         String img_1 = map.get(result.get().getWteam());
         String img_2 = map.get(result.get().getLteam());
         StringBuilder S1 = new StringBuilder(img_1);
         StringBuilder S2 = new StringBuilder(img_2);
         StringParse(S1);
         StringParse(S2);
+        model.addAttribute("team1", result.get().getWteam());
+        model.addAttribute("team2", result.get().getLteam());
+        model.addAttribute("probability", result.get().getProbability());
+        model.addAttribute("date", date);
         model.addAttribute("img_1", S1.toString().trim());
         model.addAttribute("img_2", S2.toString().trim());
         return "display";
