@@ -1,9 +1,13 @@
 package com.hzr.project.dao;
 
-import java.util.List;
 
+import com.hzr.project.model.Result;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+@Mapper
 public interface IRecord {
-    String DISPLAY_DATA="Select * from result where 1 = 1 and date = ? and((lteam = ? and  wteam = ?) or (lteam = ? and wteam = ?)) ";
-
-    List<String> search(String t1, String t2, String date);
+    @Select("SELECT * FROM result where 1 = 1 and date = #{date} and((lteam = #{team1} and  wteam = #{team2}) or (lteam = #{team2} and wteam = #{team1})) ")
+    Result search(@Param("team1") String t1, @Param("team2") String t2, @Param("date") String date);
 }
