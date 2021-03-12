@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface LplGameDao {
-    @Select("select * from lplPlayer where Year = #{year} and Season = #{season}")
+    @Select("select * from lplGame where Year = #{year} and Season = #{season}")
     List<LplGame> selectLplGame(@Param("year")String t1, @Param("season") String t2);
 }
