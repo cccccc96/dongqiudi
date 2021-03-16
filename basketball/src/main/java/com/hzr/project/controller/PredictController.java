@@ -78,4 +78,9 @@ public class PredictController {
         model.addAttribute("img_2", S2.toString().trim());
         return "display";
     }
+
+    @RequestMapping(value = "index2")
+    public String History() {
+        return "index2";
+    }
 }
