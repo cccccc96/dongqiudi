@@ -5,12 +5,14 @@ $(document).ready(function () {
         gridWidth = Math.floor(width / 42),
         gridHeight = gridWidth + 2,
         legendElementWidth = gridWidth * 3,
-        colors = [],
+        colors1 = [],
+        colors2 = [],
         times = ["第一节", "第二节", "第三节", "第四节"],
         bins = [.1, .2, .3, .4, .5, .6, .7, .8, .9];
 
     for (var i = .05; i < 1; i += .1) {
-        colors.push(d3.interpolateRdPu(i));
+        colors1.push(d3.interpolateRdPu(i));
+        colors2.push(d3.interpolateGnBu(i));
     }
 
     // 图像区域
@@ -23,9 +25,11 @@ $(document).ready(function () {
     // 颜色区域模块划分
     var colorScale = d3.scaleThreshold()
         .domain(bins)
-        .range(colors);
-    console.log("colorscale", colorScale)
-    console.log("color", colors)
+        .range(colors1);
+    var colorScale2 = d3.scaleThreshold()
+        .domain(bins)
+        .range(colors2);
+
     var timeLabels = svg.selectAll(".timeLabel")
         .data(times)
         .enter().append("text")
@@ -41,7 +45,7 @@ $(document).ready(function () {
         .attr("transform", "translate(" + gridWidth / 2 + ", -6)");
 
     var legend = d3.select(".legend").append("g");
-    legend.selectAll("rect").data(colors).enter().append("rect")
+    legend.selectAll("rect").data(colors1).enter().append("rect")
         .attr("x", function (d, i) {
             return legendElementWidth * i;
         })
@@ -140,7 +144,8 @@ $(document).ready(function () {
                     minute_values.push(+data[i].item_47);
                     minute_values.push(+data[i].item_48);
                 }
-                var player_labels = svg.selectAll("text.player_label").data(players);
+
+                const player_labels = svg.selectAll("text.player_label").data(players);
                 player_labels.enter().append("text")
                     .attr("x", 0)
                     .attr("class", "player_label")
@@ -156,7 +161,7 @@ $(document).ready(function () {
 
                 player_labels.exit().remove();
 
-                var minute_rects = svg.selectAll("rect.minute")
+                const minute_rects = svg.selectAll("rect.minute")
                     .data(minute_values);
                 console.log(minute_rects);
                 minute_rects.exit().remove();
@@ -166,7 +171,7 @@ $(document).ready(function () {
                     .attr("width", gridWidth)
                     .attr("height", gridHeight)
                     .attr("class", "bordered minute")
-                    .style("fill", colors[0])
+                    .style("fill", colors1[0])
                     .merge(minute_rects)
                     .attr("x", function (d, i) {
                         return (i % 48) * gridWidth;
