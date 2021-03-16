@@ -18,16 +18,17 @@ public class GameController {
     @Autowired
     LplPlayerDao lplPlayerDao;
 
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getGame/{year}/{season}")
-    public List<LplGame> getGame(@PathVariable String year, @PathVariable String season){
-        return lplGameDao.selectLplGame(year,season);
+    public List<LplGame> getGame(@PathVariable String year, @PathVariable String season) {
+        return lplGameDao.selectLplGame(year, season);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getPlayer/{year}/{season}")
-    public List<LplPlayer> getPlayer(@PathVariable String year, @PathVariable String season){
-        return lplPlayerDao.SelectLplPlayer(year,season);
+    public List<LplPlayer> getPlayer(@PathVariable String year, @PathVariable String season) {
+        return lplPlayerDao.SelectLplPlayer(year, season);
     }
 
 }
