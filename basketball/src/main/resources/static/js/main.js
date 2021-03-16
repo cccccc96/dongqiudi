@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    var margin = {top: 20, right: 0, bottom: 0, left: 145},
-        width = 1200 - margin.left - margin.right,
+    var margin = {top: 20, right: 0, bottom: 0, left: 345},
+        width = 1200 - 145 - margin.right,
         height = 500 - margin.top - margin.bottom,
-        gridWidth = Math.floor(width / 48),
+        gridWidth = Math.floor(width / 42),
         gridHeight = gridWidth + 2,
         legendElementWidth = gridWidth * 3,
         colors = [],
@@ -10,7 +10,7 @@ $(document).ready(function () {
         bins = [.1, .2, .3, .4, .5, .6, .7, .8, .9];
 
     for (var i = .05; i < 1; i += .1) {
-        colors.push(d3.interpolatePuBu(i));
+        colors.push(d3.interpolateRdPu(i));
     }
 
     // 图像区域
@@ -24,7 +24,8 @@ $(document).ready(function () {
     var colorScale = d3.scaleThreshold()
         .domain(bins)
         .range(colors);
-
+    console.log("colorscale", colorScale)
+    console.log("color", colors)
     var timeLabels = svg.selectAll(".timeLabel")
         .data(times)
         .enter().append("text")
@@ -157,7 +158,7 @@ $(document).ready(function () {
 
                 var minute_rects = svg.selectAll("rect.minute")
                     .data(minute_values);
-
+                console.log(minute_rects);
                 minute_rects.exit().remove();
                 minute_rects.enter().append("rect")
                     .attr("rx", 4)
@@ -178,7 +179,6 @@ $(document).ready(function () {
                     .style("fill", function (d) {
                         return colorScale(d);
                     });
-                console.log("hu " + data[0].gamesPlayed)
             }, error: function (data) {
                 console("出现异常，异常原因【" + data + "】!");
             }
