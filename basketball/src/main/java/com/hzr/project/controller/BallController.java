@@ -35,6 +35,15 @@ public class BallController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping("/getHistoryPlayer/{PlayerName}")
+    @ResponseBody
+    public List<History> getHistoryPlayer(@PathVariable String PlayerName) {
+        System.out.println(PlayerName);
+        return historyDao.selectHistoryPlayer(PlayerName);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getRookiePlayer")
     public List<RoleTransition> getRookiePlayer() {
         return roleTransitionDao.selectRookiePlayer();

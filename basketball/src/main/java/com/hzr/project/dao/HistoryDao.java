@@ -19,4 +19,7 @@ import java.util.List;
 public interface HistoryDao {
     @Select("select * from History where year = #{year} and TeamName = #{TeamName}")
     List<History> selectPlayer(@Param("year") String year, @Param("TeamName") String TeamName);
+
+    @Select("select * from History where PlayerName = #{PlayerName}")
+    List<History> selectHistoryPlayer(@Param("PlayerName") String PlayerName);
 }
