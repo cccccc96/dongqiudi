@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hu Zirui
@@ -25,10 +26,22 @@ public class BallController {
     private RoleTransitionDao roleTransitionDao;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/getPlayer/{year}/{TeamName}")
+    @RequestMapping("/getPlayer/{year}/{TeamName}")
+    @ResponseBody
     public List<History> getPlayer(@PathVariable String year, @PathVariable String TeamName) {
+        System.out.println(year);
+        System.out.println(TeamName);
         return historyDao.selectPlayer(year, TeamName);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping("/getHistoryPlayer/{PlayerName}")
+    @ResponseBody
+    public List<History> getHistoryPlayer(@PathVariable String PlayerName) {
+        System.out.println(PlayerName);
+        return historyDao.selectHistoryPlayer(PlayerName);
+    }
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getRookiePlayer")
