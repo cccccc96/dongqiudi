@@ -26,8 +26,7 @@ public class PlayoffController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getText/{winner}/{loser}")
     public Text getText(@PathVariable String winner,@PathVariable String loser){
-        Text text=textDao.selectByTeam(winner,loser);
-        return text;
+        return textDao.selectByTeam(winner, loser);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

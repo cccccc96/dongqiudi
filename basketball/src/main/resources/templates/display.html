@@ -12,7 +12,8 @@
 
     <!-- Bootstrap CSS File -->
     <link th:href="@{new/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/bootstrap-table.css"/>
     <!-- Libraries CSS Files -->
     <link th:href="@{new/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
     <link th:href="@{new/lib/animate/animate.min.css}" rel="stylesheet">
@@ -25,39 +26,14 @@
             padding-left: 60px;
             padding-right: 20px;
         }
+
+        span.ico-circle {
+            padding-top: 6px;
+        }
     </style>
 </head>
 
 <body id="page-top">
-<!--<%-->
-<!--String t1 = (String) request.getAttribute("t1");-->
-<!--String date =(String) request.getAttribute("date");-->
-<!--String t2 = (String)request.getAttribute("t2");-->
-<!--String t1_src = (String) request.getAttribute("t1_src");-->
-<!--String t2_src = (String) request.getAttribute("t2_src");-->
-<!--String result = (String) request.getAttribute("percent");-->
-<!--StringBuilder S1 = @{new StringBuilder(t1_src);-->
-<!--StringBuilder S2 = @{new StringBuilder(t2_src);-->
-<!--System.out.println(t1_src);-->
-<!--System.out.println(t2_src);-->
-<!--for (int i =0;i-->
-<!--<S1.length-->
-<!--        ();i++){-->
-<!--        if (S1.charAt(i)=='\\'){-->
-<!--        S1.setCharAt(i,-->
-<!--'/');-->
-<!--}-->
-<!--}-->
-<!--for (int i =0;i-->
-<!--<S2.length-->
-<!--        ();i++){-->
-<!--        if (S2.charAt(i)=='\\'){-->
-<!--        S2.setCharAt(i,-->
-<!--'/');-->
-<!--}-->
-<!--}-->
-<!--%>-->
-<!--/ Nav Star /-->
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll" href="#page-top">Team 5</a>
@@ -140,8 +116,8 @@
                         <tr>
                             <th scope="col" style="padding-left:60px">Winner</th>
                             <th scope="col" style="padding-left: 100px">Loser</th>
-                            <th scope="col">Percentage</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Percentage</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -379,7 +355,7 @@
             <div class="col-sm-12">
 
                 <div class="box-shadow-full">
-                    <h3 class="title-a" style="margin-bottom: 80px; margin-left:220px ">
+                    <h3 class="title-a" style="margin-bottom: 60px; margin-left:330px ">
                         你喜爱的球员新赛季预测数据
                     </h3>
                     <table class="table table-hover ">
@@ -1187,8 +1163,9 @@
                                 </div>
                                 <div class="socials">
                                     <ul>
-                                        <li><a href="#"><span class="ico-circle"><i
-                                                class="ion-social-facebook"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i style="padding-top: 10px"
+                                                                                    class="ion-social-facebook"></i></span></a>
+                                        </li>
                                         <li><a href="#"><span class="ico-circle"><i
                                                 class="ion-social-instagram"></i></span></a></li>
                                         <li><a href="#"><span class="ico-circle"><i
@@ -1204,6 +1181,7 @@
             </div>
         </div>
     </div>
+    <table id="mytab2" class="table table-hover">a</table>
     <footer>
         <div class="container">
             <div class="row">
@@ -1241,6 +1219,7 @@
 <!-- Template Main Javascript File -->
 <script th:src="@{new/js/main.js}"></script>
 <script>
+
     //1,先准备数据
     var datas = [
         {

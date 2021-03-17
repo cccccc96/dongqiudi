@@ -11,12 +11,16 @@
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/sankey.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
     <link rel="icon" type="image/png" href="img/icon.png">
+    <link th:href="@{new/css/style.css}" rel="stylesheet">
     <style>
         hr {
             margin-top: 0;
@@ -133,67 +137,451 @@
         <p class="description">每一行代表一个不同的球员，而每一列代表一个特定的分钟。不考虑加时赛，我们默认设置一场比赛48分钟
             每个单元格的颜色表示玩家在那一分钟玩的游戏的百分比。这个百分比来自82场比赛，而不是球员出场的次数，所以2015-16赛季杜兰特第一分钟的颜色是30-40%，尽管他在27场比赛中都首发，因为他因为伤病错过了55场比赛。</p>
     </div>
-    <div class="controls">
-        <select id="team" class="TeamName">
-            <!--            <option value="ATL">亚特兰老鹰队</option>-->
-            <!--            <option value="BOS">波士顿凯尔特人队</option>-->
-            <!--            <option value="BRK">布鲁克林篮网队</option>-->
-            <!--            <option value="CHI">芝加哥公牛队</option>-->
-            <!--            <option value="CHO">夏洛特黄蜂队</option>-->
-            <!--            <option value="CLE">克利夫兰骑士队</option>-->
-            <!--            <option value="DAL">达拉斯独行侠队</option>-->
-            <!--            <option value="DEN">丹佛掘金队</option>-->
-            <!--            <option value="DET">底特律活塞队</option>-->
-            <!--            <option value="GSW">金州勇士队</option>-->
-            <!--            <option value="HOU">休斯顿火箭队</option>-->
-            <!--            <option value="IND">印第安步行者队</option>-->
-            <!--            <option value="LAC">洛杉矶快船队</option>-->
-            <!--            <option value="LAL">洛杉矶湖人队</option>-->
-            <!--            <option value="MEM">孟菲斯灰熊队</option>-->
-            <!--            <option value="MIA">迈阿密热火队</option>-->
-            <!--            <option value="MIL">密尔沃基雄鹿队</option>-->
-            <!--            <option value="MIN">明尼苏达森林狼队</option>-->
-            <!--            <option value="NOP">新奥尔良鹈鹕队</option>-->
-            <!--            <option value="NYK">纽约尼克斯队</option>-->
-            <!--            <option value="OKC">俄克拉荷马雷霆队</option>-->
-            <!--            <option value="ORL">奥兰多魔术队</option>-->
-            <!--            <option value="PHI">费城76人队</option>-->
-            <!--            <option value="PHO">菲尼克斯太阳队</option>-->
-            <!--            <option value="POR">波特兰开拓者队</option>-->
-            <!--            <option value="SAC">萨克拉门托国王队</option>-->
-            <!--            <option value="SAS">圣安东尼奥马刺队</option>-->
-            <!--            <option value="TOR">多伦多猛龙队</option>-->
-            <!--            <option value="UTA">犹他爵士队</option>-->
-            <!--            <option value="WAS">华盛顿奇才队</option>-->
-            <option value="ATL">亚特兰老鹰队</option>
-            <option value="GSW">金州勇士队</option>
-            <option value="LAL">洛杉矶湖人队</option>
-            <option value="MIA">迈阿密热火队</option>
-        </select>
-        <select id="year" class="Year">
-            <option value="2020">2019-2020</option>
-            <option value="2019">2018-2019</option>
-            <option value="2018">2017-2018</option>
-            <option value="2017">2016-2017</option>
-            <option value="2016">2015-2016</option>
-        </select>
-        <svg width="750" height="40" class="legend"></svg>
+    <div class="box-shadow-full">
+        <div class="controls">
+            <select id="team" class="TeamName">
+                <option value="ATL">亚特兰老鹰队</option>
+                <option value="GSW">金州勇士队</option>
+                <option value="LAL">洛杉矶湖人队</option>
+                <option value="MIA">迈阿密热火队</option>
+            </select>
+            <select id="year" class="Year">
+                <option value="2020">2019-2020</option>
+                <option value="2019">2018-2019</option>
+                <option value="2018">2017-2018</option>
+                <option value="2017">2016-2017</option>
+                <option value="2016">2015-2016</option>
+            </select>
+            <svg width="750" height="40" class="legend"></svg>
+        </div>
+        <div id="heatmap"></div>
+        <div class="controls2">
+            <select id="team2" class="TeamName2">
+                <option value="Stephen Curry">Stephen Curry</option>
+                <option value="Klay Thompson">Klay Thompson</option>
+                <option value="Nick Young">Nick Young</option>
+                <option value="D'Angelo Russell">D'Angelo Russell</option>
+                <option value="LeBron James">LeBron James</option>
+            </select>
+            <svg width="750" height="40" class="legend2"></svg>
+        </div>
+        <div id="heatmap2"></div>
     </div>
-    <a href="http://localhost:8800/index3"></a>
-    <div id="heatmap"></div>
-    <div class="controls2">
-        <select id="team2" class="TeamName2">
-            <option value="Stephen Curry">Stephen Curry</option>
-            <option value="Klay Thompson">Klay Thompson</option>
-            <option value="Nick Young">Nick Young</option>
-            <option value="D'Angelo Russell">D'Angelo Russell</option>
-            <option value="LeBron James">LeBron James</option>
-        </select>
-        <svg width="750" height="40" class="legend2"></svg>
+    <div class="content-header">
+        <p class="description">
+            同时，经调研发现，越来越多的朋友们开始对即将进入NBA的大学生球员很感兴趣，因此在这个彩蛋板块我们也展示了对2021年的NCAA潜力新秀未来在NBA
+            承担的角色和位置的转型。我们通过随机森林的算法选取了部分决定性较强的球员特征，基于LinearDiscriminantAnalysis的线性判别降维算法将数据
+            缩小到二维平面，最终通过朴素贝叶斯算法进行球员的分类确定其未来角色定位。
+        </p>
     </div>
-    <div id="heatmap2"></div>
+    <section id="player" class="about-mf sect-pt4 route" style="margin-bottom: 150px">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box-shadow-full">
+                        <h3 class="title-a" style="margin-bottom: 20px; margin-left:250px ">
+                            新秀球员(NCAA)到NBA的角色转型预测
+                        </h3>
+                        <table class="table table-hover ">
+                            <thead>
+                            <tr class="alert alert-primary">
+                                <th scope="col">序号</th>
+                                <th scope="col">新秀球员姓名</th>
+                                <th scope="col">大学担任位置</th>
+                                <th scope="col">NBA预计担任位置</th>
+                                <th scope="col">标签</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="container"></div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        Highcharts.chart('container', {
+            title: {
+                text: 'NCAA-NBA 球员角色转型统计'
+            },
+            series: [{
+                keys: ['from', 'to', 'weight'],
+                data: [
+                    ['Swingman NCAA', 'Shooting Wing NBA', 30],
+                    ['Swingman NCAA', 'Scoring Wing NBA', 18],
+                    ['Swingman NCAA', 'Combo Guard NBA', 4],
+                    ['Swingman NCAA', '3-and-D Wing NBA', 2],
+                    ['Shooting Wing NCAA', 'Shooting Wing NBA', 20],
+                    ['Shooting Wing NCAA', 'Scoring Wing NBA', 5],
+                    ['Shooting Wing NCAA', 'Combo Guard NBA', 2],
+                    ['Shooting Wing NCAA', '3-and-D Wing NBA', 16],
+                    ['Shooting Wing NCAA', 'Versatile Forward NBA', 1],
+                    ['Gaming Manager NCAA', 'Shooting Wing NBA', 6],
+                    ['Gaming Manager NCAA', 'Scoring Wing NBA', 10],
+                    ['Gaming Manager NCAA', 'Combo Guard NBA', 30],
+                    ['Gaming Manager NCAA', 'Floor General NBA', 4],
+                    ['Scoring Wing NCAA', 'Shooting Wing NBA', 1],
+                    ['Scoring Wing NCAA', 'Scoring Wing NBA', 10],
+                    ['Scoring Wing NCAA', '3-and-D Wing NBA', 2],
+                    ['Scoring Wing NCAA', 'Versatile Forward NBA', 1],
+                    ['Scoring Wing NCAA', 'Supporting Center NBA', 3],
+                    ['Versatile Forward NCAA', 'Shooting Wing NBA', 1],
+                    ['Versatile Forward NCAA', 'Scoring Wing NBA', 8],
+                    ['Versatile Forward NCAA', '3-and-D Wing NBA', 8],
+                    ['Versatile Forward NCAA', 'Versatile Forward NBA', 13],
+                    ['Versatile Forward NCAA', 'Scoring Center NBA', 10],
+                    ['Offensive Big NCAA', 'Floor General NBA', 1],
+                    ['Offensive Big NCAA', 'Versatile Forward NBA', 3],
+                    ['Offensive Big NCAA', 'Scoring Center NBA', 1],
+                    ['Offensive Big NCAA', 'Supporting Center NBA', 10],
+                    ['Defensive Big NCAA', 'Versatile Forward NBA', 1],
+                    ['Defensive Big NCAA', 'Scoring Center NBA', 2],
+                    ['Defensive Big NCAA', 'Supporting Center NBA', 7],
+                ],
+                type: 'sankey',
+                name: 'Sankey demo series'
+            }]
+        });
+    </script>
 
 </div>
+<script>
+    const datas = [
+        {
+            playerId: 295,
+            playerName: "Alec Peters",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 1691,
+            playerName: "Caleb Swanigan",
+            currentRole: "Forward",
+            predicted_role: "Versatile Forward",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 2646,
+            playerName: "D.J. Wilson",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Scoring Wing"
+        }, {
+            playerId: 2756,
+            playerName: "Damyean Dotson",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 3137,
+            playerName: "Davon Reed",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 3156,
+            playerName: "De'Aaron Fox",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Game Manager"
+        }, {
+            playerId: 3322,
+            playerName: "Dennis Smith Jr.",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Game Manager"
+        }, {
+            playerId: 3427,
+            playerName: "Derrick White",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Game Manager"
+        }, {
+            playerId: 3635,
+            playerName: "Dillon Brooks",
+            currentRole: "Forward",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 3760,
+            playerName: "Donovan Mitchell",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 3925,
+            playerName: "Dwayne Bacon",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 4027,
+            playerName: "Edmond Sumner",
+            currentRole: "Guard",
+            predicted_role: "Floor General",
+            labels: "Game Manager"
+        }, {
+            playerId: 4029,
+            playerName: "Edrice Adebayo",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Offensive Big"
+        }, {
+            playerId: 4372,
+            playerName: "Frank Jackson",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 4747,
+            playerName: "Harry Giles",
+            currentRole: "Forward",
+            predicted_role: "Supporting Center",
+            labels: "Offensive Big"
+        }, {
+            playerId: 4859,
+            playerName: "Ike Anigbogu",
+            currentRole: "Forward",
+            predicted_role: "Supporting Center",
+            labels: "Defensive Big"
+        }, {
+            playerId: 4994,
+            playerName: "Ivan Rabb",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 5070,
+            playerName: "Jabari Bird",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 5602,
+            playerName: "Jaron Blossomgame",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 5623,
+            playerName: "Jarrett Allen",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Offensive Big"
+        }, {
+            playerId: 5724,
+            playerName: "Jawun Evans",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Game Manager"
+        }, {
+            playerId: 5790,
+            playerName: "Jayson Tatum",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 6201,
+            playerName: "John Collins",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Offensive Big"
+        }, {
+            playerId: 6358,
+            playerName: "Jonathan Isaac",
+            currentRole: "Forward",
+            predicted_role: "Versatile Forward",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 6414,
+            playerName: "Jordan Bell",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Defensive Big"
+        }, {
+            playerId: 6415,
+            playerName: "Jordan Bell",
+            currentRole: "Guard",
+            predicted_role: "3-and-D Wing",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 6687,
+            playerName: "Josh Hart",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 6699,
+            playerName: "Josh Jackson",
+            currentRole: "Guard",
+            predicted_role: "3-and-D Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 6936,
+            playerName: "Justin Jackson",
+            currentRole: "Guard",
+            predicted_role: "Scoring Wing",
+            labels: "Game Manager"
+        }, {
+            playerId: 6937,
+            playerName: "Justin Jackson",
+            currentRole: "Forward",
+            predicted_role: "Supporting Center",
+            labels: "Defensive Big"
+        }, {
+            playerId: 6938,
+            playerName: "Justin Jackson",
+            currentRole: "Forward",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 6939,
+            playerName: "Justin Jackson",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 6965,
+            playerName: "Justin Patton",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 6966,
+            playerName: "Justin Patton",
+            currentRole: "Center",
+            predicted_role: "Versatile Forward",
+            labels: "Offensive Big"
+        }, {
+            playerId: 7042,
+            playerName: "Kadeem Allen",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Swingman"
+        }, {
+            playerId: 7697,
+            playerName: "Kyle Kuzma",
+            currentRole: "Forward",
+            predicted_role: "Versatile Forward",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 7865,
+            playerName: "Lauri Markkanen",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Versatile Forward"
+        }, {
+            playerId: 8007,
+            playerName: "Lonzo Ball",
+            currentRole: "Guard",
+            predicted_role: "Scoring Wing",
+            labels: "Game Manager"
+        }, {
+            playerId: 8080,
+            playerName: "Luke Kennard",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 8212,
+            playerName: "Malik Monk",
+            currentRole: "Guard",
+            predicted_role: "Scoring Wing",
+            labels: "Game Manager"
+        }, {
+            playerId: 8429,
+            playerName: "Markelle Fultz",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Game Manager"
+        }, {
+            playerId: 9182,
+            playerName: "Monte Morris",
+            currentRole: "Guard",
+            predicted_role: "Floor General",
+            labels: "Game Manager"
+        }, {
+            playerId: 9513,
+            playerName: "Nigel Williams-Goss",
+            currentRole: "Guard",
+            predicted_role: "Combo Guard",
+            labels: "Swingman"
+        }, {
+            playerId: 9607,
+            playerName: "OG Anunoby",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 10867,
+            playerName: "Semi Ojeleye",
+            currentRole: "Forward",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 11058,
+            playerName: "Sindarius Thornwell",
+            currentRole: "Guard",
+            predicted_role: "Scoring Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 11188,
+            playerName: "Sterling Brown",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 11576,
+            playerName: "Thomas Bryant",
+            currentRole: "Center",
+            predicted_role: "Versatile Forward",
+            labels: "Offensive Big"
+        }, {
+            playerId: 11735,
+            playerName: "Tony Bradley",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Offensive Big"
+        }, {
+            playerId: 12106,
+            playerName: "Tyler Dorsey",
+            currentRole: "Guard",
+            predicted_role: "Shooting Wing",
+            labels: "Swingman"
+        }, {
+            playerId: 12139,
+            playerName: "Tyler Lydon",
+            currentRole: "Forward",
+            predicted_role: "3-and-D Wing",
+            labels: "Scoring Wing"
+        }, {
+            playerId: 12391,
+            playerName: "Wesley Iwundu",
+            currentRole: "Forward",
+            predicted_role: "Shooting Wing",
+            labels: "Shooting Wing"
+        }, {
+            playerId: 12610,
+            playerName: "Zach Collins",
+            currentRole: "Forward",
+            predicted_role: "Scoring Center",
+            labels: "Defensive Big"
+        }];
+    const tbody = document.querySelectorAll("tbody")[0];
+    for (let i = 0; i < datas.length; i++) {
+        const tr = document.createElement("tr");
+        tbody.appendChild(tr);
+        for (const k in datas[i]) {
+            const td = document.createElement("td");
+            tr.appendChild(td);
+            td.innerHTML = datas[i][k];
+        }
+    }
+</script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
