@@ -197,7 +197,7 @@ $(document).ready(function () {
         bins2 = [.1, .2, .3, .4, .5, .6, .7, .8, .9];
 
     for (let i = .05; i < 1; i += .1) {
-        colors2.push(d3.interpolateCool(i));
+        colors2.push(d3.interpolateGnBu(i));
     }
 
     // 图像区域
