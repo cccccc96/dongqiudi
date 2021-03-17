@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var margin = {top: 20, right: 0, bottom: 0, left: 345},
+    var margin = {top: 20, right: 0, bottom: 0, left: 235},
         width = 1200 - 145 - margin.right,
         height = 500 - margin.top - margin.bottom,
         gridWidth = Math.floor(width / 42),
@@ -186,7 +186,7 @@ $(document).ready(function () {
         })
     }
 
-    var margin2 = {top: 20, right: 0, bottom: 0, left: 345},
+    var margin2 = {top: 20, right: 0, bottom: 0, left: 235},
         width2 = 1200 - 145 - margin2.right,
         height2 = 500 - margin2.top - margin2.bottom,
         gridWidth2 = Math.floor(width2 / 42),
