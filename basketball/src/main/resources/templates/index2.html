@@ -57,7 +57,7 @@
 
         .controls2 {
             margin-left: 345px;
-            margin-top: 250px;
+            margin-top: 160px;
             display: flex;
             align-items: center;
         }
@@ -78,6 +78,11 @@
 
         #header {
             margin-bottom: 10px;
+        }
+
+        .content-header {
+            padding: 5px;
+            margin-left: 150px;
         }
     </style>
 
@@ -101,20 +106,9 @@
                             </div>
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li class="active"><a href="http:localhost:8800">Home</a></li>
                                     <li><a href="#">About</a></li>
                                     <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="#">About Us</a></li>
-                                            <li><a href="#">News</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">News</a></li>
-                                                    <li><a href="#">News Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Contact</a></li>
-                                        </ul>
                                     </li>
                                     <li><a href="#">News</a></li>
                                     <li><a href="#">Contact</a></li>
@@ -130,14 +124,14 @@
         </div>
     </header>
 </div>
-<h5 class="page-header" style="margin-top: 20px"></h5>
+<h5 class="page-header" style="margin-top: 10px"></h5>
 <div class="container-fluid">
-    <div>
-        <p class="description">Each row represents a different player, while each column represents a particular minute.
-            The color of each cell indicates the percentage of games that the player played that minute. The percentages
-            are out of 82 games, not the number of games the player played, so 2014-15 Kevin Durant has a 30-40% color
-            for the first minute, even though he started all 27 games that he played in, since he missed 55 games with
-            an injury.</p>
+    <div class="content-header">
+        <p class="description">欢迎来到这个板块，我们很高兴您能成功探索到这里 </p>
+        <p class="description">
+            这个板块的可视化可以帮助您快速浏览到您感兴趣的球队特定赛季的球员时间分配与相应球员的出场情况，尽管你或许队篮球不太熟悉，浏览这个板块也能让您快速了解到团队的核心成员与教练在关键阶段的球权分配！</p>
+        <p class="description">每一行代表一个不同的球员，而每一列代表一个特定的分钟。不考虑加时赛，我们默认设置一场比赛48分钟
+            每个单元格的颜色表示玩家在那一分钟玩的游戏的百分比。这个百分比来自82场比赛，而不是球员出场的次数，所以2015-16赛季杜兰特第一分钟的颜色是30-40%，尽管他在27场比赛中都首发，因为他因为伤病错过了55场比赛。</p>
     </div>
     <div class="controls">
         <select id="team" class="TeamName">
@@ -198,6 +192,7 @@
         <svg width="750" height="40" class="legend2"></svg>
     </div>
     <div id="heatmap2"></div>
+
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

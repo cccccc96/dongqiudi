@@ -316,7 +316,7 @@ $(document).ready(function () {
                     minute_values.push(+data[i].item_48);
                 }
 
-                const player_labels2 = svg2.selectAll("text.player_label2").data(players).data(years);
+                const player_labels2 = svg2.selectAll("text.player_label2").data(years);
                 player_labels2.enter().append("text")
                     .attr("x", 0)
                     .attr("class", "player_label2")
