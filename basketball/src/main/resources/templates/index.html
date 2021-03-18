@@ -14,6 +14,7 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript">
     var check_num = 0;
+
     function check(ctrl) {
         if (event.srcElement.checked === true)
             check_num++;
@@ -467,7 +468,8 @@
 
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-6">
-                        <input type="text" class="form-control" id="test1" placeholder="请输入您要预测的场次" name="date" th:value="${date}">
+                        <input type="text" class="form-control" id="test1" placeholder="请输入您要预测的场次" name="date"
+                               th:value="${date}">
                         <script src="js/layDate-v5.0.9/laydate/laydate.js" charset="GBK"></script> <!-- 改成你的路径 -->
                         <script>
                             //执行一个laydate实例
@@ -476,7 +478,11 @@
                             });
                         </script>
                         <div class="gotoshop-btn text-center wow fadeInUp" data-wow-delay="900ms">
-                            <input type="submit" value="开始预测" class="btn famie-btn">
+                            <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+                                <input type="button" data-method="notice" class="btn famie-btn layui-btn"
+                                       value="部分日程表参照" style="height: 50px">
+                                <input type="submit" value="开始预测" class="btn famie-btn">
+                            </div>
                         </div>
 
                     </div>
@@ -484,8 +490,8 @@
             </div>
         </section>
     </form>
-</section>
 
+</section>
 <section class="farming-practice-area section-padding-100-50">
     <div class="container">
         <div class="row">
@@ -739,10 +745,44 @@
     var errori = '<%=request.getAttribute("errorxxx")%>';
     if (errori === 'yes') {
         alert("请输入正确的日程表");
-        window.location.href = "http://localhost:8080/index.html"
+        window.location.href = "http://localhost:8080"
     }
 </script>
-<!-- jquery 2.2.4  -->
+<script>
+    layui.use('layer', function () {
+        var active = {
+            notice: function () {
+                layer.open({
+                    type: 1
+                    ,
+                    title: "2020-2021新赛季日程表"
+                    ,
+                    closeBtn: false
+                    ,
+                    area: '600px;'
+                    ,
+                    shade: 0.8
+                    ,
+                    id: 'LAY_layuipro'
+                    ,
+                    btn: ['再看看', '这就冲']
+                    ,
+                    btnAlign: 'c'
+                    ,
+                    moveType: 1
+                    ,
+                    content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">Toronto Raptors VS New Orleans Pelicans 2021-10-22<br>Los Angeles Clippers VS Los Angeles Lakers 2021-10-22<br>Charlotte Hornets VS Chicago Bulls 2021-10-23<br>Indiana Pacers VS Detroit Pistons  2021-10-23<br>Orlando Magic VS Cleveland Cavaliers 2021-10-23 <br> Brooklyn Nets VS Minnesota Timberwolves 2021-10-23<br>Miami Heat VS Memphis Grizzlies 2021-10-23<br>Boston Celtics VS Philadelphia 76ers 2021-10-23 </div>'
+                    ,
+                });
+            }
+        };
+
+        $('#layerDemo .layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+    });
+</script>
 <script th:src="@{js/jquery.min.js}"></script>
 <!-- Popper js -->
 <script th:src="@{js/popper.min.js}"></script>
