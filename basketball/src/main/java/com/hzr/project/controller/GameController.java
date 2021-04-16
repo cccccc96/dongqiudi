@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/game")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://101.132.45.226")
 public class GameController {
     @Autowired
     LplGameDao lplGameDao;
@@ -37,6 +37,12 @@ public class GameController {
         return  lplPlayerDao.SelectTopKillPlayer(year,season);
     }
 
+    /**
+     *
+     * @param year
+     * @param season
+     * @return
+     */
     @GetMapping("/getTopAssPlayer/{year}/{season}")
     public List<LplPlayer> getTopAssPlayer(@PathVariable String year, @PathVariable String season) {
         return  lplPlayerDao.SelectTopAssPlayer(year,season);

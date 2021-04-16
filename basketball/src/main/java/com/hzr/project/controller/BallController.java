@@ -25,7 +25,13 @@ public class BallController {
     @Autowired
     private RoleTransitionDao roleTransitionDao;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    /**
+     *
+     * @param year
+     * @param TeamName
+     * @return
+     */
+    @CrossOrigin(origins = "http://101.132.45.226")
     @RequestMapping("/getPlayer/{year}/{TeamName}")
     @ResponseBody
     public List<History> getPlayer(@PathVariable String year, @PathVariable String TeamName) {
@@ -34,7 +40,7 @@ public class BallController {
         return historyDao.selectPlayer(year, TeamName);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://101.132.45.226")
     @RequestMapping("/getHistoryPlayer/{PlayerName}")
     @ResponseBody
     public List<History> getHistoryPlayer(@PathVariable String PlayerName) {
@@ -43,7 +49,7 @@ public class BallController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://101.132.45.226")
     @GetMapping("/getRookiePlayer")
     public List<RoleTransition> getRookiePlayer() {
         return roleTransitionDao.selectRookiePlayer();

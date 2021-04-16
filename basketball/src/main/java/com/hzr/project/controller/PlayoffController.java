@@ -23,19 +23,19 @@ public class PlayoffController {
     @Autowired
     PlayerDao playerDao;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://101.132.45.226")
     @GetMapping("/getText/{winner}/{loser}")
     public Text getText(@PathVariable String winner,@PathVariable String loser){
         return textDao.selectByTeam(winner, loser);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://101.132.45.226")
     @GetMapping("/getTeam/{winner}/{loser}")
     public List<Team> getTeam(@PathVariable String winner, @PathVariable String loser){
         return teamDao.selectTeam(winner,loser);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://101.132.45.226")
     @GetMapping("/getPlayer/{winner}/{loser}")
     public List<Player> getPlayer(@PathVariable String winner , @PathVariable String loser){
         return playerDao.getPlayer(winner,loser);
