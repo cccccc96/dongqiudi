@@ -2,6 +2,7 @@ package com.hzr.project.controller;
 
 import com.hzr.project.dao.IRecord;
 import com.hzr.project.model.Result;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
-
+@Api(tags = "数据预测模块")
 @Controller
 public class PredictController {
     @Autowired

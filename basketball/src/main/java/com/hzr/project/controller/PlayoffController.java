@@ -6,13 +6,14 @@ import com.hzr.project.dao.TextDao;
 import com.hzr.project.model.Player;
 import com.hzr.project.model.Team;
 import com.hzr.project.model.Text;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Api(tags = "季后赛模块")
 @RestController
 @RequestMapping("/playoff")
 public class PlayoffController {
