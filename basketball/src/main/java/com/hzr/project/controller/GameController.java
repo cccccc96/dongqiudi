@@ -16,7 +16,7 @@ import java.util.List;
 @Api(tags = "LPL模块")
 @RestController
 @RequestMapping("/game")
-@CrossOrigin(origins = "http://101.132.45.226")
+@CrossOrigin(origins = "http://139.224.40.26/")
 public class GameController {
     @Autowired
     LplGameDao lplGameDao;

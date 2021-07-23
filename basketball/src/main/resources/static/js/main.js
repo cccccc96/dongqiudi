@@ -1,17 +1,16 @@
 $(document).ready(function () {
-    var margin = {top: 20, right: 0, bottom: 0, left: 235},
+    const margin = {top: 20, right: 0, bottom: 0, left: 235},
         width = 1200 - 145 - margin.right,
         height = 500 - margin.top - margin.bottom,
-        gridWidth = Math.floor(width / 42),
-        gridHeight = gridWidth + 2,
-        legendElementWidth = gridWidth * 3,
+        cellWidth = Math.floor(width / 42),
+        cellHeight = cellWidth + 2,
+        lenghdWid = cellWidth * 3,
         colors1 = [],
         times = ["第一节", "第二节", "第三节", "第四节"],
         bins = [.1, .2, .3, .4, .5, .6, .7, .8, .9];
 
     for (var i = .05; i < 1; i += .1) {
         colors1.push(d3.interpolateRdPu(i));
-
     }
 
     // 图像区域
@@ -25,30 +24,28 @@ $(document).ready(function () {
     var colorScale = d3.scaleThreshold()
         .domain(bins)
         .range(colors1);
-
-    var timeLabels = svg.selectAll(".timeLabel")
+    svg.selectAll(".timeLabel")
         .data(times)
         .enter().append("text")
         .text(function (d) {
             return d;
         })
         .attr("x", function (d, i) {
-            return 12 * i * gridWidth;
+            return 12 * i * cellWidth;
         })
         .attr("y", 0)
         .attr("class", "time_label")
         .style("text-anchor", "middle")
-        .attr("transform", "translate(" + gridWidth / 2 + ", -6)");
-
+        .attr("transform", "translate(" + cellWidth / 2 + ", -6)");
     var legend = d3.select(".legend").append("g");
     legend.selectAll("rect").data(colors1).enter().append("rect")
         .attr("x", function (d, i) {
-            return legendElementWidth * i;
+            return lenghdWid * i;
         })
         .attr("y", 15)
         .attr("class", "legend_rect")
-        .attr("width", legendElementWidth)
-        .attr("height", gridHeight)
+        .attr("width", lenghdWid)
+        .attr("height", cellHeight)
         .style("fill", function (d) {
             return d;
         });
@@ -59,7 +56,7 @@ $(document).ready(function () {
             return parseInt(d * 100) + "%-" + parseInt((d + .1) * 100) + "%";
         })
         .attr("x", function (d, i) {
-            return (legendElementWidth * i) + 2;
+            return (lenghdWid * i) + 2;
         })
         .attr("y", 12);
 
@@ -151,9 +148,9 @@ $(document).ready(function () {
                         return d;
                     })
                     .attr("y", function (d, i) {
-                        return i * gridHeight;
+                        return i * cellHeight;
                     })
-                    .attr("transform", "translate(-2," + gridHeight / 1.5 + ")")
+                    .attr("transform", "translate(-2," + cellHeight / 1.5 + ")")
 
                 player_labels.exit().remove();
 
@@ -164,16 +161,16 @@ $(document).ready(function () {
                 minute_rects.enter().append("rect")
                     .attr("rx", 4)
                     .attr("ry", 4)
-                    .attr("width", gridWidth)
-                    .attr("height", gridHeight)
+                    .attr("width", cellWidth)
+                    .attr("height", cellHeight)
                     .attr("class", "bordered minute")
                     .style("fill", colors1[0])
                     .merge(minute_rects)
                     .attr("x", function (d, i) {
-                        return (i % 48) * gridWidth;
+                        return (i % 48) * cellWidth;
                     })
                     .attr("y", function (d, i) {
-                        return Math.floor(i / 48) * gridHeight;
+                        return Math.floor(i / 48) * cellHeight;
                     })
 
                 d3.selectAll("rect.minute").transition().duration(500)
@@ -189,9 +186,9 @@ $(document).ready(function () {
     var margin2 = {top: 20, right: 0, bottom: 0, left: 235},
         width2 = 1200 - 145 - margin2.right,
         height2 = 500 - margin2.top - margin2.bottom,
-        gridWidth2 = Math.floor(width2 / 42),
-        gridHeight2 = gridWidth2 + 2,
-        legendElementWidth2 = gridWidth2 * 3,
+        cellWidth2 = Math.floor(width2 / 42),
+        cellHeight2 = cellWidth2 + 2,
+        lenghdWid2 = cellWidth2 * 3,
         colors2 = [],
         times2 = ["第一节", "第二节", "第三节", "第四节"],
         bins2 = [.1, .2, .3, .4, .5, .6, .7, .8, .9];
@@ -210,30 +207,28 @@ $(document).ready(function () {
     var colorScale2 = d3.scaleThreshold()
         .domain(bins2)
         .range(colors2);
-
-    var timeLabels2 = svg2.selectAll(".timeLabel2")
+    svg2.selectAll(".timeLabel2")
         .data(times2)
         .enter().append("text")
         .text(function (d) {
             return d;
         })
         .attr("x", function (d, i) {
-            return 12 * i * gridWidth2;
+            return 12 * i * cellWidth2;
         })
         .attr("y", 0)
         .attr("class", "time_label2")
         .style("text-anchor", "middle")
-        .attr("transform", "translate(" + gridWidth2 / 2 + ", -6)");
-
+        .attr("transform", "translate(" + cellWidth2 / 2 + ", -6)");
     var legend2 = d3.select(".legend2").append("g");
     legend2.selectAll("rect").data(colors2).enter().append("rect")
         .attr("x", function (d, i) {
-            return legendElementWidth2 * i;
+            return lenghdWid2 * i;
         })
         .attr("y", 15)
         .attr("class", "legend_rect2")
-        .attr("width", legendElementWidth2)
-        .attr("height", gridHeight2)
+        .attr("width", lenghdWid2)
+        .attr("height", cellHeight2)
         .style("fill", function (d) {
             return d;
         });
@@ -244,7 +239,7 @@ $(document).ready(function () {
             return parseInt(d * 100) + "%-" + parseInt((d + .1) * 100) + "%";
         })
         .attr("x", function (d, i) {
-            return (legendElementWidth2 * i) + 2;
+            return (lenghdWid2 * i) + 2;
         })
         .attr("y", 12);
 
@@ -326,9 +321,9 @@ $(document).ready(function () {
                         return d;
                     })
                     .attr("y", function (d, i) {
-                        return i * gridHeight2;
+                        return i * cellHeight2;
                     })
-                    .attr("transform", "translate(-2," + gridHeight2 / 1.5 + ")")
+                    .attr("transform", "translate(-2," + cellHeight2 / 1.5 + ")")
 
                 player_labels2.exit().remove();
                 const minute_rects = svg2.selectAll("rect.minute2")
@@ -338,16 +333,16 @@ $(document).ready(function () {
                 minute_rects.enter().append("rect")
                     .attr("rx", 4)
                     .attr("ry", 4)
-                    .attr("width", gridWidth2)
-                    .attr("height", gridHeight2)
+                    .attr("width", cellWidth2)
+                    .attr("height", cellHeight2)
                     .attr("class", "bordered minute2")
                     .style("fill", colors2[0])
                     .merge(minute_rects)
                     .attr("x", function (d, i) {
-                        return (i % 48) * gridWidth2;
+                        return (i % 48) * cellWidth2;
                     })
                     .attr("y", function (d, i) {
-                        return Math.floor(i / 48) * gridHeight2;
+                        return Math.floor(i / 48) * cellHeight2;
                     })
 
                 d3.selectAll("rect.minute2").transition().duration(500)

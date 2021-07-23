@@ -38,7 +38,7 @@ public class BallController {
      */
     @ApiImplicitParams({@ApiImplicitParam(name = "year",value = "年份",required = true),@ApiImplicitParam(name = "TeamName",value = "队伍名",required = true)})
     @ApiOperation(value = "获取球员信息")
-    @CrossOrigin(origins = "http://101.132.45.226")
+    @CrossOrigin(origins = "http://139.224.40.26/")
     @RequestMapping("/getPlayer/{year}/{TeamName}")
 //    @PostMapping("/getPlayer/{year}/{TeamName}")
     @ResponseBody
@@ -49,7 +49,7 @@ public class BallController {
     }
     @ApiImplicitParam(name = "PlayerName",value = "球员姓名",required = true)
     @ApiOperation(value = "获取某位球员历史数据")
-    @CrossOrigin(origins = "http://101.132.45.226")
+    @CrossOrigin(origins = "http://139.224.40.26/")
     @RequestMapping("/getHistoryPlayer/{PlayerName}")
 //    @GetMapping("/getHistoryPlayer/{PlayerName}")
     @ResponseBody
@@ -59,7 +59,7 @@ public class BallController {
     }
 
     @ApiOperation(value = "获取所有新秀球员转型数据")
-    @CrossOrigin(origins = "http://101.132.45.226")
+    @CrossOrigin(origins = "http://139.224.40.26/")
     @GetMapping("/getRookiePlayer")
     public List<RoleTransition> getRookiePlayer() {
         return roleTransitionDao.selectRookiePlayer();

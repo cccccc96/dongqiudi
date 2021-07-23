@@ -98,8 +98,8 @@
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <nav class="classy-navbar justify-content-between" id="famieNav">
-                        <a href="http://101.132.45.226:8800/" class="nav-brand">
-                            <img th:src="@{img/core-img/logo.png}" alt="">
+                        <a href="http://139.224.40.26:8800/#begin" class="nav-brand">
+                            <img th:src="@{img/core-img/logo.png}" alt="" src="">
                         </a>
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="http://101.132.45.226:8800">Home</a></li>
+                                    <li class="active"><a href="http://139.224.40.26:8800/#begin">Home</a></li>
                                     <li><a href="#">Back</a></li>
                                     <li><a href="#">Pages</a>
                                     </li>
@@ -134,8 +134,8 @@
         <p class="description">欢迎来到这个板块，我们很高兴您能成功探索到这里 </p>
         <p class="description">
             这个板块的可视化可以帮助您快速浏览到您感兴趣的球队特定赛季的球员时间分配与相应球员的出场情况，尽管你或许队篮球不太熟悉，浏览这个板块也能让您快速了解到团队的核心成员与教练在关键阶段的球权分配！</p>
-        <p class="description">每一行代表一个不同的球员，而每一列代表一个特定的分钟。不考虑加时赛，我们默认设置一场比赛48分钟
-            每个单元格的颜色表示玩家在那一分钟玩的游戏的百分比。这个百分比来自82场比赛，而不是球员出场的次数，所以2015-16赛季杜兰特第一分钟的颜色是30-40%，尽管他在27场比赛中都首发，因为他因为伤病错过了55场比赛。</p>
+        <p class="description">每一行代表一个不同的球员，而每一列代表一个特定的时刻。不考虑加时赛，我们默认设置一场比赛48分钟
+            每个单元格的颜色表示玩家在那一分钟实时参与比赛的百分比。颜色的深浅展示了球员的参与度。</p>
     </div>
     <div class="box-shadow-full">
         <div class="controls">
@@ -171,7 +171,7 @@
         <p class="description">
             同时，经调研发现，越来越多的朋友们开始对即将进入NBA的大学生球员很感兴趣，因此在这个彩蛋板块我们也展示了对2021年的NCAA潜力新秀未来在NBA
             承担的角色和位置的转型。我们通过随机森林的算法选取了部分决定性较强的球员特征，基于LinearDiscriminantAnalysis的线性判别降维算法将数据
-            缩小到二维平面，最终通过朴素贝叶斯算法进行球员的分类确定其未来角色定位。
+            缩小到二维平面，最终通过AdaBoost算法进行球员的分类确定其未来角色定位。
         </p>
     </div>
     <section id="player" class="about-mf sect-pt4 route" style="margin-bottom: 150px">

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="utf-8">
+    <title>Team 5</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <base href="/">
+    <!-- Favicons -->
+    <link rel="icon" th:href="@{img/core-img/favicon.ico}">
+    <!-- Bootstrap CSS File -->
+    <link th:href="@{new/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Libraries CSS Files -->
+    <link th:href="@{new/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/ionicons/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{new/lib/lightbox/css/lightbox.min.css}" rel="stylesheet">
+    <link th:href="@{new/css/style.css}" rel="stylesheet">
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?type=webgl&v=1.0&ak=67jMQ5DmYTe1TLMBKFUTcZAR"></script>
+    <style type="text/css">
+        ul li {
+            list-style: none;
+        }
+
+        .info {
+            z-index: 999;
+            width: auto;
+            min-width: 22rem;
+            padding: .75rem 1.25rem;
+            margin-left: 1.25rem;
+            position: absolute;
+            top: 1rem;
+            background-color: #fff;
+            border-radius: .25rem;
+            font-size: 14px;
+            color: #666;
+            box-shadow: 0 2px 6px 0 rgba(27, 142, 236, 0.5);
+        }
+
+        .btn-wrap {
+            z-index: 999;
+            position: absolute;
+            bottom: 3.5rem;
+            margin-left: 3rem;
+            padding: 1rem 1rem;
+            border-radius: .25rem;
+            background-color: #fff;
+            box-shadow: 0 2px 6px 0 rgba(27, 142, 236, 0.5);
+        }
+
+        .btn {
+            width: 75px;
+            height: 30px;
+            background-color: #fff;
+            color: rgba(27, 142, 236, 1);
+            border: 1px solid rgba(27, 142, 236, 1);
+            border-radius: 5px;
+            margin: 0 5px;
+            font-size: 13px;
+        }
+
+        #table th {
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll" href="#page-top">胡梓锐</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#">Weather</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#">BaiduMap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--/ Nav End /-->
+
+<!--/ Intro Skew Star /-->
+<div id="home" class="intro route bg-image"
+     th:style="'background:url('+ @{img/bg-img/bg1.jpg} +');'">
+    <div class="overlay-itro"></div>
+    <div class="intro-content display-table">
+        <div class="table-cell">
+            <div class="container">
+                <h1 class="intro-title mb-4">Welcome Dear TA</h1>
+                <p class="intro-subtitle"><span class="text-slider-items">This is Lab3 for Cloud Computing Class. Wish you have a nice day!</span><strong
+                        class="text-slider"></strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<form th:action="@{/thirdParty/weather}" method="get">
+    <section class="about-mf sect-pt4 route" style="margin-bottom: 150px;" id="Weather">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box-shadow-full">
+                        <h3 class="title-a" style="margin-bottom: 20px; margin-left:380px">
+                            天气情报
+                        </h3>
+                        <div id="selectCity" style="display: flex;">
+                            <div class="layui-panel">
+                                <select id="idState" style="width: 150px" th:name="cityID" th:value="${cityID}">
+                                    <option value="110100" th:selected="${cityID == 110100}">北京</option>
+                                    <option value="310100" th:selected="${cityID == 310100}">上海</option>
+                                    <option value="321300" th:selected="${cityID == 321300}">江苏宿迁</option>
+                                    <option value="440100" th:selected="${cityID == 440100}">广州</option>
+                                    <option value="650100" th:selected="${cityID == 650100}">新疆</option>
+                                </select>
+                            </div>
+                            <input type="submit" value="查看天气" class="btn btn-outline-success"
+                                   style="width : 150px; margin-top: -2px">
+                        </div>
+                        <table class="table table-hover" style="margin: 30px;">
+                            <thead>
+                            <tr>
+                                <th scope="col">天气指标</th>
+                                <th scope="col">详细情况</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">温度</th>
+                                <td th:text="${weather.getTemp()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">湿度</th>
+                                <td th:text="${weather.getRh()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">风力</th>
+                                <td th:text="${weather.getWind_class()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">天气情况</th>
+                                <td th:text="${weather.getText()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">风向</th>
+                                <td th:text="${weather.getWind_dir()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">舒适度</th>
+                                <td th:text="${weather.getFeels_like()}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">城市</th>
+                                <td th:text="${weather.getCity_name()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </section>
+</form>
+<section class="about-mf sect-pt4 route" style="margin-bottom: 150px" id="#Map">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box-shadow-full">
+                    <h3 class="title-a" style="margin-bottom: 20px; margin-left:380px">
+                        百度地图
+                    </h3>
+
+                    <ul class="btn-wrap" style="z-index: 99;">
+                        <li class="btn" onclick="addRouteType()">叠加路况</li>
+                        <li class="btn" onclick="removeRouteType()">删除路况</li>
+                    </ul>
+                    <div style="width:800px;height:600px;border:#ccc solid 1px;margin: auto;" id="allmap"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</section>
+<form th:action="@{/thirdParty/translation}" method="get">
+    <section class="about-mf sect-pt4 route" style="margin-bottom: 150px" id="#Trans">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box-shadow-full">
+                        <h3 class="title-a" style="margin-bottom: 20px; margin-left:380px">
+                            百度翻译
+                        </h3>
+                        <div class="col-sm-12" style="display: flex">
+                            <div class="col-sm-6"><textarea cols="50" rows="10" id="input-text"
+                                                            th:name="@{text}" th:text="${src}"></textarea>
+                                <input type="submit" value="开始翻译" class="btn btn-outline-success"
+                                       style="margin-top: 10px; height: 50px; width: 80% ">
+                            </div>
+                            <div class="col-sm-6"><textarea cols="50" rows="10" id="result-text"
+                                                            th:text="${dst}"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<!--/ Section Contact-Footer Star /-->
+<section class="paralax-mf footer-paralax bg-image sect-mt4 route"
+         th:style="'background:url('+ @{new/img/overlay-bg.jpg} +');'">
+    <div class="overlay-mf"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="contact-mf">
+                    <div id="contact" class="box-shadow-full">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="title-box-2">
+                                    <h5 class="title-left">
+                                        Send Message Us
+                                    </h5>
+                                </div>
+                                <div>
+                                    <form action="" method="post" role="form" class="contactForm">
+                                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                                        <div id="errormessage"></div>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" class="form-control" id="name"
+                                                           placeholder="Your Name" data-rule="minlen:4"
+                                                           data-msg="Please enter at least 4 chars"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                           placeholder="Your Email" data-rule="email"
+                                                           data-msg="Please enter a valid email"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="subject" id="subject"
+                                                           placeholder="Subject" data-rule="minlen:4"
+                                                           data-msg="Please enter at least 8 chars of subject"/>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="message" rows="5"
+                                                              data-rule="required"
+                                                              data-msg="Please write something for us"
+                                                              placeholder="Message"></textarea>
+                                                    <div class="validation"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="button button-a button-big button-rouded">
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="title-box-2 pt-4 pt-md-0">
+                                    <h5 class="title-left">
+                                        Get in Touch
+                                    </h5>
+                                </div>
+                                <div class="more-info">
+                                    <p class="lead">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem
+                                        soluta quidem
+                                        expedita aperiam aliquid at.
+                                        Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
+                                        mollitia inventore?
+                                    </p>
+                                    <ul class="list-ico">
+                                        <li><span class="ion-ios-location"></span>华东师范大学</li>
+                                        <li><span class="ion-ios-telephone"></span>10086</li>
+                                        <li><span class="ion-email"></span> 1242378947@qq.com</li>
+                                    </ul>
+                                </div>
+                                <div class="socials">
+                                    <ul>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-facebook"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-instagram"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-twitter"></i></span></a></li>
+                                        <li><a href="#"><span class="ico-circle"><i
+                                                class="ion-social-pinterest"></i></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright-box">
+                        <p class="copyright">&copy; Copyright <strong>Team 5</strong>. All Rights Reserved</p>
+                        <div class="credits">
+                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<!--/ Section Contact-footer End /-->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<div id="preloader"></div>
+<!-- JavaScript Libraries -->
+<script th:src="@{new/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{new/lib/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{new/lib/popper/popper.min.js}"></script>
+<script th:src="@{new/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{new/lib/counterup/jquery.waypoints.min.js}"></script>
+<script th:src="@{new/lib/counterup/jquery.counterup.js}"></script>
+<script th:src="@{new/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{new/lib/lightbox/js/lightbox.min.js}"></script>
+<script th:src="@{new/lib/typed/typed.min.js}"></script>
+<!-- Template Main Javascript File -->
+<script th:src="@{new/js/main.js}"></script>
+<script>
+    var map = new BMapGL.Map('allmap');
+    var point = new BMapGL.Point(121.411329, 31.233563);
+    var marker = new BMapGL.Marker(point, {
+        enableDragging: true
+    });
+    map.addOverlay(marker);
+    map.centerAndZoom(point, 13);
+    map.enableScrollWheelZoom();
+    map.setTilt(70);
+
+    function addRouteType() {
+        map.setTrafficOn(); // 叠加路况图层
+    }
+
+    function removeRouteType() {
+        map.setTrafficOff(); // 关闭路况图层
+    }
+
+    var circle = new BMapGL.Circle(point, 3000, {
+        fillColor: "blue",
+        strokeWeight: 1,
+        fillOpacity: 0.3,
+        strokeOpacity: 0.3
+    });
+    map.addOverlay(circle);
+    var local = new BMapGL.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});
+    local.searchNearby('体育馆', point, 2000);
+</script>
+</body>
+</html>
+
